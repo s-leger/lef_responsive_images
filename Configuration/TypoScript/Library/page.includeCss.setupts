@@ -1,0 +1,10 @@
+###################################
+## setup page
+###################################
+
+page {
+   
+    includeCss {
+    	responsiveimages = {$plugin.lef_responsive_images.css}fixes.css
+	}
+}

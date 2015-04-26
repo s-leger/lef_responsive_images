@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2013-09-19T09:11:39Z" product-name="lef_responsive_images">
+        <header/>
+        <body>
+     
+            <trans-unit id="imagelayout.default"> 
+                <source>Default</source>
+            </trans-unit>
+            <trans-unit id="imagelayout.roundcorner">
+                <source>Round corners</source>
+            </trans-unit>
+            <trans-unit id="imagelayout.circle">
+                <source>Circle</source>
+            </trans-unit>
+            <trans-unit id="uploadlayout.default">
+                <source>Default</source>
+            </trans-unit>
+            <trans-unit id="uploadlayout.icon">
+                <source>With icon</source>
+            </trans-unit>
+            <trans-unit id="uploadlayout.preview">
+                <source>With preview</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-19T09:11:39Z" product-name="lef_responsive_images">
+		<header/>
+		<body>
+
+			<trans-unit id="pageTs.disablePageTsTCEFORM">
+				<source>Disable TCEFORM: If this option is set the config for TCEFORM will not load automatically. Include "FILE:EXT:lef_responsive_images/Configuration/PageTS/TCEFORM.txt" in your PageTsConfig to load the config manually.</source>
+			</trans-unit>
+			
+			
+		</body>
+	</file>
+</xliff>

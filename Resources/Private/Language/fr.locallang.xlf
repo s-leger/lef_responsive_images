@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.0">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" date="2013-09-19T09:11:39Z" product-name="lef_responsive_images">
+        <header/>
+        <body>
+ 
+            <trans-unit id="imagelayout.default" approved="yes"> 
+                <source>Default</source> <target state="translated">Defaut</target></trans-unit>
+            <trans-unit id="imagelayout.roundcorner" approved="yes">
+                <source>Round corners</source> <target state="translated">Coins arrondis</target></trans-unit>
+            <trans-unit id="imagelayout.circle" approved="yes">
+                <source>Circle</source> <target state="translated">Cercle</target></trans-unit>
+            <trans-unit id="uploadlayout.default" approved="yes">
+                <source>Default</source> <target state="translated">Defaut</target></trans-unit>
+            <trans-unit id="uploadlayout.icon" approved="yes">
+                <source>With icon</source> <target state="translated">Avec icônes</target></trans-unit>
+            <trans-unit id="uploadlayout.preview" approved="yes">
+                <source>With preview</source> <target state="translated">Avec vignette</target></trans-unit>
+        </body>
+    </file>
+</xliff>

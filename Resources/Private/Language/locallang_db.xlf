@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+  <file source-language="en" datatype="plaintext" original="messages" date="2015-03-15T04:53:48Z" product-name="lef_responsive_images">
+    <header/>
+    <body>
+      <trans-unit id="tt_content.loadingmethod_options"> 
+         <source>Loading method</source>
+      </trans-unit>
+      <trans-unit id="tt_content.loadingmethod_options.I.0"> 
+         <source>Lazyload</source>
+      </trans-unit>
+      <trans-unit id="tt_content.loadingmethod_options.I.1"> 
+         <source>Preload</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

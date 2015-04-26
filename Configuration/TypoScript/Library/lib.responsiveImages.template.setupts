@@ -1,0 +1,173 @@
+##################################
+## Layout from template         ##
+##################################
+
+# NOTE: setup column width in fluid templates
+# <f:cObject typoscriptObjectPath="lib.dymanicContent" data="{col_md: '9'}" />
+
+# FluidTemplate vars : 
+# @ col_xs, sm, md, lg, xl : integer, number of columns 
+# @ fluid : boolean, set to 1 on layouts without .container   
+
+# Behiavour of breakpoints
+# fluid -> make image size the screen size max for the breakpoint
+# fixed -> make image size the width of container for current breakpoint
+
+lib.responsiveImages.template{
+    
+    width_template = COA
+    width_template {
+        10 = TEXT
+        10.value = (
+        
+        20 = TEXT
+        
+        30 = TEXT
+        30.value = +{$plugin.lef_responsive_images.gutter})/{$plugin.lef_responsive_images.columns}*
+        
+        40 = TEXT
+        
+        stdWrap.override.cObject = COA
+        stdWrap.override.cObject {
+            10 = TEXT
+            10.value = (
+            
+            20  = TEXT
+            
+            30  = TEXT
+            30.value = +{$plugin.lef_responsive_images.gutter})/{$plugin.lef_responsive_images.columns}*
+            
+            40 = TEXT
+            
+            stdWrap.if{
+                isLessThan.field = fluid 
+                isLessThan.ifEmpty = 0                
+                value = 1
+                negate = 1
+            }
+        }
+    }
+}
+
+
+lib.dynamicContent.5 {
+    
+    
+    # Container behiavour   
+    fluid{
+        cObject = TEXT
+        cObject{
+            value = 0
+            override.field = fluid
+        }
+    }
+    
+    # Number of columns, auto propagate from lower to bigger
+    
+    columns_xs{
+        cObject = TEXT
+        cObject{
+            value = {$plugin.lef_responsive_images.columns}
+            override.field = col_xs
+        }
+    }
+    columns_sm{
+        cObject = TEXT
+        cObject{
+            data = register:columns_xs
+            override.field = col_sm
+        }
+    }
+    columns_md{
+        cObject = TEXT
+        cObject{
+            data = register:columns_sm
+            override.field = col_md
+        }
+    }
+    columns_lg{
+        cObject = TEXT
+        cObject{
+            data = register:columns_md
+            override.field = col_lg
+        }
+    }
+    
+    
+    # Available width
+    width_xxs {
+        cObject < lib.responsiveImages.template.width_template
+        cObject{
+            
+            20.value = {$plugin.lef_responsive_images.container.xs}
+            40.data = register:columns_xs
+            stdWrap.override.cObject {
+                20.value = {$plugin.lef_responsive_images.container.xs}
+                40.data = register:columns_xs
+                stdWrap >
+            }
+        }
+        prioriCalc = 1
+    }
+    
+    width_xs {
+        cObject < lib.responsiveImages.template.width_template
+        cObject{
+            20.value = {$plugin.lef_responsive_images.container.xs}
+            40.data = register:columns_xs
+            stdWrap.override.cObject{
+                20.value = {$plugin.lef_responsive_images.container.sm}
+                40.data = register:columns_xs
+                stdWrap.if.isFalse = {$plugin.lef_responsive_images.fluid.xs}
+            }
+        }
+        prioriCalc = 1
+    }
+    
+    width_sm {
+        cObject < lib.responsiveImages.template.width_template
+        cObject{
+            20.value = {$plugin.lef_responsive_images.container.sm}
+            40.data = register:columns_sm
+            stdWrap.override.cObject{
+                20.value = {$plugin.lef_responsive_images.container.md}
+                40.data = register:columns_sm
+                stdWrap.if.isFalse = {$plugin.lef_responsive_images.fluid.sm}
+            }
+        }
+        prioriCalc = 1
+    }    
+    
+    width_md {
+        cObject < lib.responsiveImages.template.width_template
+        cObject{
+            20.value = {$plugin.lef_responsive_images.container.md}
+            40.data = register:columns_md
+            
+            stdWrap.override.cObject {
+                20.value = {$plugin.lef_responsive_images.container.lg}
+                40.data = register:columns_md
+                stdWrap.if.isFalse = {$plugin.lef_responsive_images.fluid.md}
+            }   
+        }
+        prioriCalc = 1
+    }
+    
+    width_lg {
+        cObject < lib.responsiveImages.template.width_template
+        cObject{
+            20.value = {$plugin.lef_responsive_images.container.lg}
+            40.data = register:columns_lg    
+            
+            stdWrap.override.cObject {
+                20.value= {$plugin.lef_responsive_images.container.xl}
+                40.data = register:columns_lg
+                stdWrap.if.isFalse = {$plugin.lef_responsive_images.fluid.lg}
+                
+            }
+        }
+        prioriCalc = 1
+    }
+    
+}
+

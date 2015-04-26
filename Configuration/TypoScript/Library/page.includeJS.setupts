@@ -1,0 +1,11 @@
+###################################
+## setup page
+###################################
+
+page {
+   
+    includeJSFooterlibs {
+        responsiveimages = {$plugin.lef_responsive_images.js}jquery.responsiveimages.min.js
+	}
+    
+}

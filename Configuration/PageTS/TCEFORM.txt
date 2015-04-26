@@ -1,0 +1,54 @@
+#################
+#### TCEFORM ####
+#################
+
+TCEFORM.tt_content{
+  imageheight {
+    types {
+      textpic.disabled = 1
+      image.disabled = 1
+    }
+  }
+  imagewidth {
+    types {
+      textpic.disabled = 0
+      image.disabled = 0
+    }
+  } 
+  imagecols {
+    removeItems = 5,7,8
+  }
+  imageorient {
+    removeItems = 1,2,9,10
+  }
+
+  ### Add images layout 
+
+  layout.types {
+    image {
+      removeItems = 3
+      altLabels {
+        0 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.default
+        1 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.roundcorner
+        2 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.circle
+      }
+    }
+    textpic {
+      removeItems = 3
+      altLabels {
+        0 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.default
+        1 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.roundcorner
+        2 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.circle
+      }
+    }
+    ### Add label to upload layouts
+    uploads{
+      removeItems = 3
+      altLabels {
+        0 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:uploadlayout.default
+        1 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:uploadlayout.icon
+        2 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:uploadlayout.preview    
+      }
+    }
+  }
+}
