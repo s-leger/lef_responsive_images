@@ -1,23 +1,27 @@
-lef_responsive_images
+lef_responsive_grid gridelements compagnion for lef_responsive_images
+
 A typo3 bootstrap_package extension to allow real image width generation for any breakpoint in fluid design
 
-**What does it do ?**
+Currently, typo3 core only allow to set width of images without any layout relationship.
 
-Current settings in typo3 lead to images size driving your design. We think that design should drive images sizes.
+This ends up into providing images far larger than client would have needed (think about a picture in a 6 column layout rendered at 1200 / 600 / 300 px while only making 100px). Not only this consume bandwidth, but also energy to downsize images in the browsers.
 
-Extends typo3 6.2-7.0+ bootstrap_package
+Providing some care, it's possible to pre-compute real image size in nearly every layout for every breakpoint. Adding full support for correct img srcset and picture tag, and data-attributes lazyload solution, and css background.
 
-- Keep image / text proportions in any layout (including nested) for all breakpoints.
-- Automatically pre-compute real image size for each breakpoint and generate images according.
-- Use advanced javascript lazyload solution to load the right source on each target device.
-- Enhance support for responsive <picture><srcset> and <img sizes="" srcset=""> tags
-- Add optional support for retina.
+**The cons :**
+
+- Precomputing 5 to 10 images (breakpoints +1) * 2 if retina can be time consuming on first load of the page.
+- Configuration to take account of grid system, breakpoints, and content frames.
+- Adapting templates to make system aware of layout.
+- Not artistic direction friendly (but there is currently no one in typo3)
+
+**The pros :**
+
+- Less bandwith
+- Less energy
+- Less time to load
+- Automagic once configuration done, but with standards grids setups it should be ok right out of the box.
 
 
-**In depth, what does it solve, why and how ?**
-
-Well, it's all about proportions.
-
-Setting a width of picture or a default width for breakpoint is far not enougth to ensure stability of proportions between text / images. In a layout with say 2 columns (8/4), the image width is the same for both columns. And things may even go wronger with gridelements nested columns.
-
-Without knowledge of layout, typo3 core is not able to handle such situations. So in order for the design to take control over image sizes, we do have to handle the problem from layout perspective, and drive images sizes according.
+Why not ?
+Who wants it ?
