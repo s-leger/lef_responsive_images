@@ -24,3 +24,12 @@
 img.lazyload.preload{
 opacity:1 !important;
 }
+/* fix for no-js */
+html.no-js img {
+	max-width: 100%;
+}
+
+html.no-js figure.image > img {
+	visibility: hidden;
+	display: none;
+}
