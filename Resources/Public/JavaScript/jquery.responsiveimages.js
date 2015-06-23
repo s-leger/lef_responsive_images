@@ -115,8 +115,9 @@
             images = images.not(loaded);
         }
         // use throttle plugin when present, otherwise this paceholder 
-        if ($.throttle === undefined){$.throttle = function(delay, fun){return fun;};}; 
-        $(options.container).scroll($.throttle(250,checkviewport));
+        /*if ($.throttle === undefined){$.throttle = function(delay, fun){return fun;};};
+        $(options.container).scroll($.throttle(250,checkviewport));*/
+		$(options.container).scroll( checkviewport );
    
         $window.resize(checkviewport);
         

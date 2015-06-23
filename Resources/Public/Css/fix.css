@@ -25,11 +25,28 @@ img.lazyload.preload{
 opacity:1 !important;
 }
 /* fix for no-js */
-html.no-js img {
+/*html.no-js img {
 	max-width: 100%;
 }
 
 html.no-js figure.image > img {
 	visibility: hidden;
 	display: none;
+}*/
+
+
+/* move:elevator modifications*/
+.hidden,
+.no-js figure.image > img,
+.no-js figure.image > a > img {
+	display: none !important;
+	visibility: hidden !important;
+}
+
+.no-js img {
+	max-width: 100%;
+}
+
+img.lazyload {
+	opacity: 1 !important;
 }
