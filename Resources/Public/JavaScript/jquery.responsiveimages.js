@@ -13,17 +13,18 @@
 	// RESPONSIVEIMAGES PLUGIN DEFINITION
 	// =================================
 	$.fn.responsiveimages = function( options, callback ) {
+
 		// The rule is : if the layout is responsive
 		// the value is the entry point of the breakpoint
 
 		var defaults = {
 				threshold: 0,
 				breakpoints: {
-					0: 'xsmall',
-					480: 'small',
-					768: 'medium',
-					992: 'large',
-					1200: 'bigger'
+					0: "xsmall",
+					480: "small",
+					768: "medium",
+					992: "large",
+					1200: "bigger"
 				},
 				// scrolldirection parameters: x y xy
 				scrolldirection: 'y',
@@ -62,9 +63,10 @@
 
 			// window width < smallest_breakpoint
 			if ( ww < smallest_breakpoint ) {
-				datakey = breakpoints[smallest_breakpoint];
+				datakey = breakpoints[ smallest_breakpoint ];
 				return;
-			};
+			}
+			;
 
 			// find largest breakpoint < window
 			$.each( breakpoints, function( breakpoint, dk ) {
@@ -79,6 +81,7 @@
 
 		this.on( "responsiveimages", function() {
 			var source = this.getAttribute( attrib );
+
 			// fallback to non retina or src when not found
 			source = source || (retina ? this.getAttribute( "data-" + datakey ) : false) || this.getAttribute( "data-src" );
 			if ( source ) {
@@ -131,7 +134,6 @@
 		checkviewport();
 
 		return this;
-
 	}
 
 })( window.jQuery );
