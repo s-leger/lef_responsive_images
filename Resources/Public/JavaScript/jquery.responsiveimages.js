@@ -5,7 +5,6 @@
  * include verge (and optional throttle) before this one in the minimified version
  */
 
-;
 (function( $ ) {
 
 	$.extend( verge );
@@ -66,7 +65,6 @@
 				datakey = breakpoints[ smallest_breakpoint ];
 				return;
 			}
-			;
 
 			// find largest breakpoint < window
 			$.each( breakpoints, function( breakpoint, dk ) {
@@ -76,7 +74,6 @@
 					datakey = dk;
 				}
 			} );
-
 		}
 
 		this.on( "responsiveimages", function() {
@@ -86,7 +83,9 @@
 			source = source || (retina ? this.getAttribute( "data-" + datakey ) : false) || this.getAttribute( "data-src" );
 			if ( source ) {
 				this.setAttribute( "src", source );
-				if ( typeof callback === "function" ) callback.call( this );
+				if ( typeof callback === "function" ) {
+					callback.call( this );
+				}
 			}
 		} );
 
@@ -104,8 +103,12 @@
 		function responsiveimages () {
 			var inview = images.filter( function() {
 				var $element = $( this );
-				if ( options.skip_invisible && $element.is( ":hidden" ) ) return;
-				if ( options.preloadClass && $element.hasClass( options.preloadClass ) ) return true;
+				if ( options.skip_invisible && $element.is( ":hidden" ) ) {
+					return;
+				}
+				if ( options.preloadClass && $element.hasClass( options.preloadClass ) ) {
+					return true;
+				}
 				switch ( scrolldirection ) {
 					case 'x':
 						return $.inX( $element, threshold );
