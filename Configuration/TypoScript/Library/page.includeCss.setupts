@@ -5,6 +5,6 @@
 page {
    
     includeCss {
-    	responsiveimages = {$plugin.lef_responsive_images.css}fixes.css
+    	responsiveimages = {$plugin.lef_responsive_images.css}fix.css
 	}
 }
