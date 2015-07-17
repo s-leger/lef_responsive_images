@@ -99,6 +99,6 @@ img.lazyload.preload {
 	max-width: 100%;
 }
 
-img.lazyload {
+.no-js img.lazyload {
 	opacity: 1 !important;
 }
