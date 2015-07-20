@@ -16,8 +16,8 @@ namespace LEF\LefResponsiveImages\Hooks\ContentObject;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * stdWrap support of mediaQueries
- * 
- * 
+ *
+ *
  */
 class ContentObjectOneSourceCollectionHook  implements \TYPO3\CMS\Frontend\ContentObject\ContentObjectOneSourceCollectionHookInterface {
 
@@ -33,11 +33,11 @@ class ContentObjectOneSourceCollectionHook  implements \TYPO3\CMS\Frontend\Conte
 	 */
 	public function getOneSourceCollection(array $sourceRenderConfiguration, array $sourceConfiguration, $oneSourceCollection, \TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer &$parentObject){
 
-	    	if (isset($sourceConfiguration['mediaQuery'])) {
+	  if (isset($sourceConfiguration['mediaQuery'])) {
 			$mediaQuery = $parentObject->stdWrap($sourceConfiguration['mediaQuery'], $sourceConfiguration['mediaQuery.']);
 			$oneSourceCollection = str_replace($sourceConfiguration['mediaQuery'], $mediaQuery, $oneSourceCollection);
 		}
-		
+
 		if (isset($sourceConfiguration['backgroundElementID'])) {
 			$backgroundElementID = $parentObject->stdWrap($sourceConfiguration['backgroundElementID'], $sourceConfiguration['backgroundElementID.']);
 			$oneSourceCollection = str_replace($sourceConfiguration['backgroundElementID'], $backgroundElementID, $oneSourceCollection);

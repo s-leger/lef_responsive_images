@@ -82,15 +82,13 @@
 	right: -100%;
 }
 
-/* make <picture> opaque with preload mode */
-img.lazyload.preload {
+/* make img opaque on preload mode */
+img[data-preload="true"] {
 	opacity: 1 !important;
 }
 
-/* move:elevator modifications*/
-.hidden,
-.no-js figure.image > img,
-.no-js figure.image > a > img {
+/* handle .no-js : hide loader and make lazyload img opaque */
+.no-js img[src$="ajax-loader.gif"] {
 	display: none !important;
 	visibility: hidden !important;
 }
