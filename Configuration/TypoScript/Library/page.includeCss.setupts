@@ -3,8 +3,8 @@
 ###################################
 
 page {
-   
-    includeCss {
+
+    includeCSS {
     	responsiveimages = {$plugin.lef_responsive_images.css}fix.css
 	}
 }
