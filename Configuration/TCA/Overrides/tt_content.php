@@ -10,8 +10,8 @@ $tca = array (
                 'config' => array (
                         'type' => 'select',
                         'items' => array (
-                                array('LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang_db.xlf:tt_content.loadingmethod_options.I.0', '1'),
-                                array('LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang_db.xlf:tt_content.loadingmethod_options.I.1', '2'),
+                                array('LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang_db.xlf:tt_content.loadingmethod_options.I.0', '0'),
+                                array('LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang_db.xlf:tt_content.loadingmethod_options.I.1', '1'),
                         ),
                         'size' => 1,
                         'maxitems' => 1,

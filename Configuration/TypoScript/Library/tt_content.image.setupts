@@ -4,11 +4,11 @@
 
 tt_content.image.20{
   rendering{
-    
+
     cssbackground {
-      
+
     }
-    
+
     noCaption {
       rowStdWrap.wrap = <div class="row"> | </div>
       lastRowStdWrap.wrap < .rowStdWrap.wrap
@@ -25,11 +25,11 @@ tt_content.image.20{
       noRowsStdWrap.wrap < .rowStdWrap.wrap
     }
   }
-  
+
 }
 
 tt_content.image.20.1 {
-    
+
     layout {
         srcset {
             element = <img ###PARAMS### srcset="###SOURCECOLLECTION###" src="###SRC###"###ALTPARAMS######SELFCLOSINGTAGSLASH###>
@@ -38,10 +38,10 @@ tt_content.image.20.1 {
         picture {
             element = <picture>###SOURCECOLLECTION###<img src="###SRC###"###PARAMS######ALTPARAMS######SELFCLOSINGTAGSLASH###></picture>
             source = <source srcset="###SRC###" media="###MEDIAQUERY###"###SELFCLOSINGTAGSLASH###>
-            ## removed width/height from source due to incorrect setting with retina 
+            ## removed width/height from source due to incorrect setting with retina
             ## width="###WIDTH###" height="###HEIGHT###"
         }
-        
+
         bootstrappackage {
             element (
             <img src="typo3conf/ext/lef_responsive_images/Resources/Public/Images/ajax-loader.gif" ###SOURCECOLLECTION######PARAMS######ALTPARAMS######SELFCLOSINGTAGSLASH###>
@@ -53,36 +53,36 @@ tt_content.image.20.1 {
             source.noTrimWrap = ; ;;
             source.noTrimWrap.splitChar = ;
         }
-        
+
         cssbackground {
             element = <style>###PARAMS###{background-position: center center; background-size:cover; background-repeat: no-repeat;} ###SOURCECOLLECTION###</style><!--[if lt IE 9 ]><style>###PARAMS### { background:url("###SRC###") no-repeat center center; filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='###SRC###',sizingMethod='scale'); -ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader( src='###SRC###', sizingMethod='scale')";}</style> <![endif]-->
             source = @media only screen AND ###MEDIAQUERY### { ###BACKGROUNDELEMENTID### { background-image:url("###SRC###");} }
         }
-        
+
     }
-    
+
     layoutKey = {$styles.content.imgtext.layoutKey}
-    
+
     sourceCollection >
     sourceCollection {
-        
+
         # Start with retina as browser pick up the first matching one
-        
+
         # 1200 +
         retina-lg {
-            
+
             if.isTrue = {$plugin.lef_responsive_images.retina.enable}
-            
-            width.stdWrap.cObject < lib.responsiveImages.image.width   
+
+            width.stdWrap.cObject < lib.responsiveImages.image.width
             width.stdWrap.cObject.10{
                 container.cObject.data = register:width_lg
                 screen.cObject.override = {$plugin.lef_responsive_images.screen.xl}
             }
-            
+
             maxW = < .width
-            
+
             pixelDensity = {$plugin.lef_responsive_images.retina.pixeldensity}
-            
+
             mediaQuery = @@@mediaQuery@@@
             mediaQuery.stdWrap.cObject < lib.responsiveImages.image.mediaQuery
             mediaQuery.stdWrap.cObject{
@@ -91,7 +91,7 @@ tt_content.image.20.1 {
                 30.10.if.isTrue = 0
                 40.value = {$plugin.lef_responsive_images.retina.mediaquery}:{$plugin.lef_responsive_images.retina.pixeldensity}
             }
-            
+
             backgroundElementID = @@@backgroundElementID@@@
             backgroundElementID.stdWrap{
                 cObject = TEXT
@@ -100,21 +100,21 @@ tt_content.image.20.1 {
                     wrap = #c|
                 }
             }
-            
+
             dataKey =  retina-bigger
         }
         # 992 - 1199
         retina-md < .retina-lg
         retina-md {
-            
+
             if.isTrue = {$plugin.lef_responsive_images.retina.enable}
-            
+
             width.stdWrap.cObject.10{
                 container.cObject.data = register:width_md
                 screen.cObject.override = {$plugin.lef_responsive_images.screen.lg}
             }
-            maxW = < .width  
-            
+            maxW = < .width
+
             mediaQuery.stdWrap.cObject{
                 10.value = {$plugin.lef_responsive_images.screen.md}
                 20.if.isTrue = 1
@@ -122,34 +122,34 @@ tt_content.image.20.1 {
                 30.10.if.isTrue = 1
                 40.value = {$plugin.lef_responsive_images.retina.mediaquery}:{$plugin.lef_responsive_images.retina.pixeldensity}
             }
-            
+
             dataKey =  retina-large
         }
         # 768 - 991
         retina-sm < .retina-lg
         retina-sm {
             if.isTrue = {$plugin.lef_responsive_images.retina.enable}
-            
+
             width.stdWrap.cObject.10{
                 container.cObject.data = register:width_sm
                 screen.cObject.override = {$plugin.lef_responsive_images.screen.md}
             }
-            
+
             width.stdWrap.override.cObject < lib.responsiveImages.image.width
             width.stdWrap.override.cObject {
-                
+
                 stdWrap.if.isTrue = {$plugin.lef_responsive_images.enable.imageColumnsAdaptive}
-                
+
                 10{
                     container.cObject.data = register:width_sm
                     screen.cObject.override = {$plugin.lef_responsive_images.screen.md}
                 }
-                
+
                 # width of images in columns could depends on breakpoints and number of columns
                 # inspired by bootstrap_package image rendering
-                
+
                 30{
-                    
+
                     30 >
                     30 = CASE
                     30{
@@ -180,9 +180,9 @@ tt_content.image.20.1 {
                 50 < .30.30
                 50.stdWrap.wrap = /|
             }
-            
+
             maxW = < .width
-            
+
             mediaQuery.stdWrap.cObject{
                 10.value = {$plugin.lef_responsive_images.screen.sm}
                 20.if.isTrue = 1
@@ -192,32 +192,32 @@ tt_content.image.20.1 {
             }
             dataKey =  retina-medium
         }
-        
+
         # 480 - 767
         retina-xs < .retina-lg
         retina-xs{
-            
+
             if.isTrue = {$plugin.lef_responsive_images.retina.enable}
-            
+
             width.stdWrap.cObject.10{
                 container.cObject.data = register:width_xs
                 screen.cObject.override = {$plugin.lef_responsive_images.screen.sm}
                 withoutGutter.cObject.override = 0
             }
-            
+
             width.stdWrap.override.cObject < lib.responsiveImages.image.width
             width.stdWrap.override.cObject {
-                
+
                 stdWrap.if.isTrue = {$plugin.lef_responsive_images.enable.imageColumnsAdaptive}
-                
+
                 10{
                     container.cObject.data = register:width_xs
                     screen   = {$plugin.lef_responsive_images.screen.sm}
                 }
-                
+
                 # width of images in columns could depends on breakpoints and number of columns
                 # inspired by bootstrap_package image rendering
-                
+
                 30{
                     30 >
                     30 = CASE
@@ -248,9 +248,9 @@ tt_content.image.20.1 {
                 50 < .30.30
                 50.stdWrap.wrap = /|
             }
-            
+
             maxW = < .width
-            
+
             mediaQuery.stdWrap.cObject {
                 10.value = {$plugin.lef_responsive_images.screen.xs}
                 20.if.isTrue = 1
@@ -258,40 +258,40 @@ tt_content.image.20.1 {
                 30.10.if.isTrue = 1
                 40.value = {$plugin.lef_responsive_images.retina.mediaquery}:{$plugin.lef_responsive_images.retina.pixeldensity}
             }
-            
+
             dataKey =  retina-small
         }
-        
+
         # 0 - 479
         retina-xxs < .retina-lg
         retina-xxs {
-            
+
             if.isTrue = {$plugin.lef_responsive_images.retina.enable}
-            
+
             width.stdWrap.cObject.10{
                 container.cObject.data = register:width_xxs
                 screen.cObject.override = {$plugin.lef_responsive_images.screen.xs}
                 # override user defined width by full width
                 userDefinedWidth.cObject.override = 0
             }
-            
+
             # text beside image dosen t make sense for sutch small device
             width.stdWrap.cObject.20.0.stdWrap.wrap >
             width.stdWrap.override.cObject < lib.responsiveImages.image.width
             width.stdWrap.override.cObject {
-                
+
                 stdWrap.if.isTrue = {$plugin.lef_responsive_images.enable.imageColumnsAdaptive}
-                
+
                 10{
                     container.cObject.data = register:width_xxs
                     screen   = {$plugin.lef_responsive_images.screen.xs}
                     userDefinedWidth.cObject.override = 0
                 }
-                
+
                 # width of images in columns could depends on breakpoints and number of columns
                 # inspired by bootstrap_package image rendering
                 20.0.stdWrap.wrap >
-        
+
                 30{
                     30 >
                     30 = CASE
@@ -323,7 +323,7 @@ tt_content.image.20.1 {
                 50.stdWrap.wrap = /|
             }
             maxW = < .width
-            
+
             mediaQuery.stdWrap.cObject {
                 10 >
                 20 >
@@ -331,11 +331,11 @@ tt_content.image.20.1 {
                 30.10.if.isTrue = 1
                 40.value = {$plugin.lef_responsive_images.retina.mediaquery}:{$plugin.lef_responsive_images.retina.pixeldensity}
             }
-            
+
             dataKey =  retina-xsmall
         }
-        
-        ## base 
+
+        ## base
         lg < .retina-lg
         lg {
             if.isTrue = 1
@@ -343,7 +343,7 @@ tt_content.image.20.1 {
             mediaQuery.stdWrap.cObject.40 >
             dataKey = bigger
         }
-        
+
         md < .retina-md
         md {
             if.isTrue = 1
@@ -351,7 +351,7 @@ tt_content.image.20.1 {
             mediaQuery.stdWrap.cObject.40 >
             dataKey = large
         }
-        
+
         sm < .retina-sm
         sm{
             if.isTrue = 1
@@ -359,7 +359,7 @@ tt_content.image.20.1 {
             mediaQuery.stdWrap.cObject.40 >
             dataKey = medium
         }
-        
+
         xs < .retina-xs
         xs{
             if.isTrue = 1
@@ -367,7 +367,7 @@ tt_content.image.20.1 {
             mediaQuery.stdWrap.cObject.40 >
             dataKey = small
         }
-        
+
         xxs < .retina-xxs
         xxs {
             if.isTrue = 1
@@ -376,7 +376,7 @@ tt_content.image.20.1 {
             dataKey = xsmall
         }
     }
-    
+
     params >
     params.stdWrap {
         cObject = COA
@@ -393,7 +393,7 @@ tt_content.image.20.1 {
                         equals = {$styles.content.imgtext.layoutKey}
                     }
                 }
-                
+
                 # Images frames
                 30 = CASE
                 30{
@@ -409,7 +409,7 @@ tt_content.image.20.1 {
                         required = 1
                     }
                 }
-                
+
                 stdWrap{
                     noTrimWrap =| class="|"|
                     required = 1
@@ -418,9 +418,9 @@ tt_content.image.20.1 {
             # Sizes params for srcset
             20  = COA
             20 {
-                
+
                 # lg
-                120 < lib.responsiveImages.image.srcset 
+                120 < lib.responsiveImages.image.srcset
                 120{
                     10.value = {$plugin.lef_responsive_images.screen.lg}
                     20 >
@@ -428,7 +428,7 @@ tt_content.image.20.1 {
                     50.10.value =  100*{register:width_lg}/{$plugin.lef_responsive_images.screen.lg}
                 }
                 # md
-                130 < lib.responsiveImages.image.srcset 
+                130 < lib.responsiveImages.image.srcset
                 130{
                     10.value = {$plugin.lef_responsive_images.screen.md}
                     30.10.value = {$plugin.lef_responsive_images.screen.lg} - 1
@@ -444,7 +444,7 @@ tt_content.image.20.1 {
                     50.10.value = 100*{register:width_sm}/{$plugin.lef_responsive_images.screen.sm}
                 }
                 # xs
-                150 < lib.responsiveImages.image.srcset  
+                150 < lib.responsiveImages.image.srcset
                 150{
                     10.value = {$plugin.lef_responsive_images.screen.xs}
                     30.10.value = {$plugin.lef_responsive_images.screen.sm} - 1
@@ -452,7 +452,7 @@ tt_content.image.20.1 {
                     50.10.value = 100*{register:width_xs}/{$plugin.lef_responsive_images.screen.sm}
                 }
                 # xxs
-                160 < lib.responsiveImages.image.srcset  
+                160 < lib.responsiveImages.image.srcset
                 160{
                     10 >
                     20 >
@@ -460,9 +460,9 @@ tt_content.image.20.1 {
                     50 < lib.responsiveImages.image.screenWidth
                     50.10.value = 100*{register:width_xxs}/{$plugin.lef_responsive_images.screen.xs}
                 }
-                
+
                 ### retina (rendering before but defined after)
-                
+
                 # lg
                 20 < .120
                 20{
@@ -493,7 +493,7 @@ tt_content.image.20.1 {
                     stdWrap.if.isTrue = {$plugin.lef_responsive_images.retina.enable}
                     40.value = {$plugin.lef_responsive_images.retina.mediaquery}:{$plugin.lef_responsive_images.retina.pixeldensity}
                 }
-                
+
                 stdWrap{
                     if{
                         value  = srcset
@@ -509,12 +509,15 @@ tt_content.image.20.1 {
                 stdWrap {
                     noTrimWrap = | ||
                     if{
-                        isTrue.field = tx_images_loading
+                        isTrue.if{
+                          value = 1
+                          equals.field = tx_images_loading
+                        }
                         value  = bootstrappackage
                         equals = {$styles.content.imgtext.layoutKey}
                     }
-                }    
+                }
             }
         }
     }
-}  
+}
