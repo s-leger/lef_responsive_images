@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = array(
   'title' => 'Bootstrap3 responsive images',
-  'description' => 'Extends the bootstrap_package 
+  'description' => 'Extends the bootstrap_package
 auto generate image at the right size
 include support for retina',
   'category' => 'fe',
@@ -27,7 +27,7 @@ include support for retina',
   'constraints' => array(
     'depends' => array(
       'typo3' => '6.2.0-7.1.99',
-      'bootstrap_package' => '6.2.0-7.1.99',
+      'bootstrap_package' => '6.2.12-7.1.99',
     ),
     'conflicts' => array(
       'themes' => '2.3.0',
