@@ -1,4 +1,6 @@
-lef_responsive_images typoscript only plugin 
+lef_responsive_images php plugin 
+
+Adds advanced features sutch css background and Art-Direction support.
 
 A typo3 bootstrap_package extension to allow real image width generation for any breakpoint in fluid design
 
@@ -13,7 +15,6 @@ Providing some care, it's possible to pre-compute real image size in nearly ever
 - Precomputing 5 to 10 images (breakpoints +1) * 2 if retina can be time consuming on first load of the page.
 - Configuration to take account of grid system, breakpoints, and content frames.
 - Adapting templates to make system aware of layout.
-- ~~Not artistic direction friendly (but there is currently no one in typo3)~~
 
 **The pros :**
 
