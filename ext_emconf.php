@@ -23,7 +23,7 @@ include support for retina',
   'uploadfolder' => '0',
   'createDirs' => '',
   'clearCacheOnLoad' => 0,
-  'version' => '0.0.3',
+  'version' => '0.0.4',
   'constraints' => array(
     'depends' => array(
       'typo3' => '6.2.0-7.1.99',
