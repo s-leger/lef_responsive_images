@@ -1,0 +1,77 @@
+###################################
+#### Media list                ####
+###################################
+
+# Render images as media list
+lib.responsiveImages.medialist < tt_content.image
+lib.responsiveImages.medialist {
+    20 {
+        imageStdWrap >
+        imageColumnStdWrap >
+        imageStdWrapNoWidth >
+        
+        renderMethod = medialist
+        
+        layout {
+            key.override = 50 
+            50 = TEXT
+            50.value = ###TEXT###<ul class="media-list">###IMAGES###</ul>
+        }
+        rendering {
+            medialist {
+                fallbackRendering = TEXT
+                fallbackRendering.value = medialist
+                rowStdWrap.wrap = |
+                noRowsStdWrap.wrap = |
+                lastRowStdWrap.wrap = |
+                columnStdWrap.wrap = |
+                editIconsStdWrap.wrap = <div> | </div>
+                singleStdWrap.wrap {
+                    cObject =  CASE
+                    cObject {
+                        key.field = imageorient
+                        default = COA 
+                        default {
+                            15 = TEXT
+                            15{
+                                value = media-left
+                                stdWrap.wrap= <div class="|"><figure class="media-object">
+                            }
+                            16 = TEXT
+                            16.value = |</figure></div>
+                            
+                            20 = COA
+                            20{
+                                10 = TEXT
+                                10{
+                                    data = file:current:title
+                                    wrap =  <h4 class="media-heading">|</h4>
+                                }
+                                20 = TEXT
+                                20 {
+                                    data = file:current:description
+                                    wrap = <p class="caption">|</p>
+                                }
+                                stdWrap.wrap = <div class="media-body">|</div>
+                            }
+                        }
+                        17 < .default
+                        18 < .default
+                        18.10 < .17.20
+                        18.15.value = media-right
+                        18.20 >
+                        25 < .17
+                        26 < .18              
+                    }
+                    
+                    stdWrap.wrap = <li class="media">|</li>
+                    
+                }
+                
+                imgTagStdWrap.wrap < .singleStdWrap.wrap
+                
+                caption >
+            }
+        }
+    } 
+}       

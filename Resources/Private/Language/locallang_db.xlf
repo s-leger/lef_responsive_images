@@ -12,6 +12,21 @@
       <trans-unit id="tt_content.loadingmethod_options.I.1"> 
          <source>Preload</source>
       </trans-unit>
+      <trans-unit id="tt_content.imagesmode_options"> 
+         <source>Image mode</source>
+      </trans-unit>
+       <trans-unit id="tt_content.imagesmode_options.I.0"> 
+         <source>Default</source>
+      </trans-unit>
+      <trans-unit id="tt_content.imagesmode_options.I.1"> 
+         <source>Art direction</source>
+      </trans-unit>
+      <trans-unit id="tt_content.imagesmode_options.I.2"> 
+         <source>Css Background</source>
+      </trans-unit>
+      <trans-unit id="tt_content.imagesmode_options.I.3"> 
+         <source>Css Background with art direction</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

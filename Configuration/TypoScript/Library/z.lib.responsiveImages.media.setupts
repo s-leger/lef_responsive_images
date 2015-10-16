@@ -1,0 +1,13 @@
+# render page media as image (only the 1st)
+lib.responsiveImages.media < tt_content.image
+lib.responsiveImages.media{
+  10 >
+  20{  
+        imageMode.override = 0
+        # note : require id="element uid" in tab container to work
+        imgList.cObject.references{
+		table = pages
+		fieldName = media
+	 }
+     }  
+ }

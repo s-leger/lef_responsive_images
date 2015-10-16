@@ -36,63 +36,28 @@ Extension manager configuration
 Note on Breakpoints
 ^^^^^^^^^^^^^^^^^^^
 
-When changing default breakpoints, you have to modify the settings of jquery.responsiveimages.min.js (see jquery.responsiveimages.js line 22-30).
+When changing default breakpoints, you have to modify the settings of resposiveimages.min.js initialisation in main.js according.
 
 .. code-block:: javascript
    :linenos:
-   :emphasize-lines: 3-7
+   :emphasize-lines: 6-10
 
-   ViewPort.DEFAULTS = {
- 		breakpoints : {
- 			0: 'xsmall',
- 			480:'small',
- 			768: 'medium',
- 			992: 'large',
- 			1200: 'bigger'
- 		}
- 	}
-
-
-Callbacks / update by hand
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Update images by hand for eg: when carousel slide and when a tab show
-
-.. code-block:: javascript
-   :linenos:
-   :emphasize-lines: 2-2
-
-   $(".carousel").on("slid.bs", function(event){
-      $("img.lazyload").responsiveimage('unveil');
-   });
-
-
-Perform an action when new images are loaded.
-
-There is no more callback on image loaded witch is an issue for content witch depend on layout. (eg bootstrap scrollspy)
-To adress this, one could fire a user event to trig callbacks when images load / change.
-Not optimal since it does fire when image start to load but on the other hand it is damn simple and does work on any browser.
-
-See "Caveats of the load event when used with images", https://api.jquery.com/load-event/
-Another cross brother approach to catch image load event exist but are far from being simple see
-https://github.com/desandro/imagesloaded/blob/master/imagesloaded.js
-
-The event is meant to be catched with a setTimeout based handler since many calls are possible, this way make a kind of throttle.
-
-.. code-block:: javascript
-   :linenos:
-   :emphasize-lines: 1-8
-
-   var loadedTimeout;
-   $(window).on('loaded.bk2k.responsiveimage', function(){
-       clearTimeout(loadedTimeout);
-       loadedTimeout = setTimeout(function(){
-           // whatever you want to do
-           refreshScrollSpy();
-           }, 200);
-       });
-
-
+	$(document).ready(
+		function () {
+			$(".lazyload").responsiveimages({
+				threshold:100,     // load image when 100 pixel near screen
+				breakpoints:{
+					0:xsmall,
+					480:small,
+					768:medium,
+					992:large,
+					1200:bigger
+				},
+				retina:0,           // 1 to enable retina
+				scrolldirection:'y' // scroll direction can be x, y, xy, default:y
+			});
+		}
+	);
 
 
 .. _admin-configuration:

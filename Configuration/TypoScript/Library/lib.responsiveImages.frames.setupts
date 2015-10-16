@@ -1,8 +1,10 @@
 ##################################
 ## Section frame width          ##
 ##################################
-lib.responsiveImages.frames = LOAD_REGISTER
+
+# userFunc in tt_content.images & textpic
 lib.responsiveImages.frames {
+    	
     width_xxs {
         cObject = COA
         cObject{
@@ -77,8 +79,3 @@ lib.responsiveImages.frames {
 }
 
 lib.responsiveImages.restore = RESTORE_REGISTER
-
-tt_content.image.5    = < lib.responsiveImages.frames
-tt_content.image.30   = < lib.responsiveImages.restore
-tt_content.textpic.5  = < lib.responsiveImages.frames
-tt_content.textpic.30 = < lib.responsiveImages.restore

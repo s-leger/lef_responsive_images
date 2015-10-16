@@ -1,102 +1,62 @@
 /* enable responsivness of <picture> */
-.thumbnail > picture > img,
-.thumbnail a > picture > img,
-.carousel-inner > .item > picture > img,
-.carousel-inner > .item > a > picture > img {
-	display: block;
-	max-width: 100%;
-	height: auto;
+.thumbnail>picture>img,.thumbnail a>picture>img,.carousel-inner>.item>picture>img,.carousel-inner>.item>a>picture>img{display:block;max-width:100%;height:auto}  
+.thumbnail>picture>img,.thumbnail a>picture>img{margin-left:auto;margin-right:auto}
+.image>picture>img,.image a>picture>img{display:block;max-width:100%;height:auto}
+@media (max-width:767px){.image>picture>img,.image a>picture>img{margin:0 auto}
 }
-
-.thumbnail > picture > img,
-.thumbnail a > picture > img {
-	margin-left: auto;
-	margin-right: auto;
-}
-
-.image > picture > img,
-.image a > picture > img {
-	display: block;
-	max-width: 100%;
-	height: auto;
-}
-
-@media (max-width: 767px) {
-	.image > picture > img,
-	.image a > picture > img {
-		margin: 0 auto;
-	}
-}
-
 /* fix 50% width for images in text and gutter width */
-.image-intext-left .image-wrap,
-.image-beside-left .image-wrap {
-	padding: 0;
-	margin: 0;
+.image-intext-left .image-wrap,  .image-beside-left  .image-wrap {padding:0; margin:0;}
+.image-intext-right .image-wrap, .image-beside-right .image-wrap {padding:0; margin:0;}
+@media (min-width:480px){
+.image-intext .image-wrap, .image-beside .image-wrap { max-width:50%;}
+.image-intext-left  .image-wrap, .image-beside-left  .image-wrap {margin-right: 15px; padding-right:15px;}
+.image-intext-right .image-wrap, .image-beside-right .image-wrap {margin-left: 15px; padding-left:15px;}
 }
-
-.image-intext-right .image-wrap,
-.image-beside-right .image-wrap {
-	padding: 0;
-	margin: 0;
+/* ensure that .image-wrap max-width:50% donsen t apply on xsmall devices */
+@media (max-width:479px){
+.image-beside .image-wrap { float: none;}
+.image-intext .image-wrap, .image-beside .image-wrap { max-width: 100% !important;}
 }
-
-@media (min-width: 480px) {
-	.image-intext .image-wrap,
-	.image-beside .image-wrap {
-		max-width: 50%;
-	}
-
-	.image-intext-left .image-wrap,
-	.image-beside-left .image-wrap {
-		margin-right: 15px;
-		padding-right: 15px;
-	}
-
-	.image-intext-right .image-wrap,
-	.image-beside-right .image-wrap {
-		margin-left: 15px;
-		padding-left: 15px;
-	}
-}
-
-/* ensure that .image-wrap max-width:50% doesn't apply on xsmall devices */
-@media (max-width: 479px) {
-	.image-beside .image-wrap {
-		float: none;
-	}
-
-	.image-intext .image-wrap,
-	.image-beside .image-wrap {
-		max-width: 100% !important;
-	}
-}
-
 /* ensure clickable items are not hidden by image center divs */
-.image-center-outer {
-	width: 50%;
+.image-center-outer {width:50%;}
+.image-center-inner {width:200%; right: -100%;}
+/* make <picture> opaque with preload mode */
+img.lazyload.preload{
+opacity:1 !important;
+}
+/* fixes for no-js contrib from lilia-d */
+html.no-js img.lazyload {
+max-width: 100%;
+}
+html.no-js figure img.lazyload {
+visibility: hidden;
+display: none;
+}
+html.no-js figure noscript img.lazyload {
+visibility: visible !important;
+display: block;
+max-width: 100%;
+opacity: 1;
 }
 
-.image-center-inner {
-	width: 200%;
-	right: -100%;
+/* Equal height for row wrapping 
+.equal-height, .equal-height > div[class*='col-'],
+.image-row, .image-row > div[class*='col-'] {  
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex: 0 1 auto;
 }
-
-/* make img opaque on preload mode */
-img[data-preload="true"] {
-	opacity: 1 !important;
+.equal-height,
+.image-row {
+    -webkit-flex-flow: row wrap;
+    align-content: flex-start;
+    flex:0;
 }
-
-/* handle .no-js : hide loader and make lazyload img opaque */
-.no-js img[src$="ajax-loader.gif"] {
-	display: none !important;
-	visibility: hidden !important;
+.equal-height > div[class*='col-'],
+.image-row > div[class*='col-'] {
+	 margin:-.2px; 
 }
-
-.no-js img {
-	max-width: 100%;
-}
-
-.no-js img.lazyload {
-	opacity: 1 !important;
-}
+*/

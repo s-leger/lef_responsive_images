@@ -17,6 +17,30 @@ $tca = array (
                         'maxitems' => 1,
                 )
         ),
+        'tx_images_mode' =>array (
+                'exclude' => 0,
+                'label' => 'LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang_db.xlf:tt_content.imagesmode_options',
+                'config' => array (
+                        'type' => 'select',
+                        'items' => array (
+                                array('LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang_db.xlf:tt_content.imagesmode_options.I.0', '0'),
+                                array('LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang_db.xlf:tt_content.imagesmode_options.I.1', '1'),
+                                array('LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang_db.xlf:tt_content.imagesmode_options.I.2', '2'),
+                                array('LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang_db.xlf:tt_content.imagesmode_options.I.3', '3'),
+                       ),
+                        'size' => 1,
+                        'maxitems' => 1,
+                )
+        ),
+        'tx_images_selector' =>array(
+                'exclude' => 0,
+        	'config' => array (
+                        'type' => 'input',
+                        'max' => 256,
+                        'size' => 10,
+                  ),
+		 'label' => 'CSS selector', 
+        ),
 );
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addTCAcolumns(
@@ -24,9 +48,4 @@ $tca = array (
         $tca,
         1
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addFieldsToPalette(
-        'tt_content',
-        'image_settings',
-        'tx_images_loading',
-        'after:image_effects'
-);
+$GLOBALS['TCA']['tt_content']['palettes']['image_settings']['showitem'] .= ',--linebreak--,tx_images_loading,tx_images_mode,tx_images_selector';

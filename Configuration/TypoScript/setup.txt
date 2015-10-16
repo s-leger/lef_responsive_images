@@ -1,1 +1,44 @@
 <INCLUDE_TYPOSCRIPT: source="DIR:EXT:lef_responsive_images/Configuration/TypoScript/Library" extensions="setupts">
+
+# Global settings for responsive images
+plugin.lef_responsive_images {
+        # grid gutter
+        gutter = {$plugin.lef_responsive_images.gutter}
+	
+	# image border and columns
+	borderThick = {$styles.content.imgtext.borderThick}
+	borderSpace = {$styles.content.imgtext.borderSpace}
+	colSpace    = {$styles.content.imgtext.colSpace}
+	
+	# conserve proportion of images above text across breakpoint when image width is set 
+	userWidthProportional = {$plugin.lef_responsive_images.images.userWidthProportional}
+	
+	#adapt the number of columns for each breakpoint
+	imageColumnsAdaptive  =	{$plugin.lef_responsive_images.enable.imageColumnsAdaptive}
+	
+	# width % of image above text 
+	imageAboveTextWidthRatio = {$plugin.lef_responsive_images.images.imageAboveTextWidthRatio}
+	
+	# media Query tag for pixel density
+	mediaQuery = {$plugin.lef_responsive_images.retina.mediaquery}
+	
+	# base Url for images (only domain part), allow to get images from nocookies domain
+        # used by default on css backgrounds fix ie8 / 9 weired behaivour on ajax calls when base href is set
+        baseUrl = TEXT
+        baseUrl.data = getIndpEnv : TYPO3_SITE_URL
+        baseUrl.override = {$plugin.lef_responsive_images.baseUrl}
+    
+        # Force baseUrl prefix on all images src, allow to get images from nocookies domain (enable = all)
+        absRefPrefix = {$plugin.lef_responsive_images.absRefPrefix}
+    
+    	artDirectionImagesCount = {$plugin.lef_responsive_images.artDirectionImagesCount}
+    	
+    	# move css right into body for ajax partial contents loading
+    	movecsstobody = {$plugin.lef_responsive_images.movecsstobody}
+    	
+    	# wrap image in artdirection mode
+    	imageWrap =  {$plugin.lef_responsive_images.wrap.image}
+	columnWrap =  {$plugin.lef_responsive_images.wrap.column}
+	rowWrap =  {$plugin.lef_responsive_images.wrap.row}
+     
+}

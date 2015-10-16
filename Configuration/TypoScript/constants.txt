@@ -10,8 +10,32 @@
 # customsubcategory=640=Retina settigs
 # customsubcategory=650=Images
 # customsubcategory=660=Frames
+# customsubcategory=700=Javascript
+# customsubcategory=710=Css
+
+page.includePath.javascript = /typo3conf/ext/bootstrap_package/Resources/Public/JavaScript/
 
 plugin.lef_responsive_images {
+    # cat=Javascript and CSS/700/100; type=boolean; label=Include JS from CDN:Include javascript library from CDN
+    jsFromCdn = 1
+    
+    cdn{
+    # cat=Javascript and CSS/700/110; type=string; label=CDN modernizr : URL of Javascript file
+    modernizr = https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js
+    # cat=Javascript and CSS/700/120; type=string; label=CDN jQuery: URL of Javascript file
+    jquery = https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js
+    # cat=Javascript and CSS/700/130; type=string; label=CDN bootstrap: URL of Javascript file
+    bootstrap = http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js
+    # cat=Javascript and CSS/700/140; type=string; label=CDN respond: URL of Javascript file
+    respond = https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js
+    }   
+    loader{
+    # cat=responsive images/650/100; type=string; label=Loader icon:Lazy load icon path relative to typo3 root
+    icon = /typo3/sysext/t3skin/images/spinner/big-f0f0f0.gif
+##  typo3conf/ext/lef_responsive_images/Resources/Public/Images/ajax-loader.gif
+    }
+    # cat=responsive images/650/100; type=options[Default (no image compression)=0,Do not change the image=1,GIF/colors unchanged=10,GIF/128 colors=11,GIF/64 colors=12,GIF/32 colors=13,GIF/16 colors=14,GIF/8 colors=15,JPG/quality 100=20,JPG/quality 90=21,JPG/quality 80 (JPG/High)=22,JPG/quality 70=23,JPG/quality 60 (JPG/Medium)=24,JPG/quality 50=25,JPG/quality 40 (JPG/Low)=26,JPG/quality 30 =27,JPG/quality 20 (JPG/Very Low)=28,PNG/256 colors=30,PNG/128 colors=31,PNG/64 colors=32,PNG/32 colors=33,PNG/16 colors=34,PNG/8 colors=35,PNG/colors unchanged (up to 256 colors)=39]; label=Image compression:Default image compression
+    compression = 26
     
     screen{
         # cat=grid system/600/110; type=int+; label=1 Screen : Minimum width of the screen extra small
@@ -56,6 +80,31 @@ plugin.lef_responsive_images {
         # cat=responsive images/650/100; type=boolean; label=Adapt number of columns for multiple images according breakpoints (require bootstrap_package extension)
         imageColumnsAdaptive = 1
     }
+    # cat=responsive images/650/100; type=int+; label=Art Direction images count: Number of images needed for each Art Direction image / page media (number of breakpoints + 1) default 5 you'll need to change layouts and sourcecollection according. 
+    artDirectionImagesCount = 5
+    
+    wrap {
+     # cat=responsive images/630/105; type=wrap; label=Image row Wrap: Wrap for image row
+     row   = <div class="image-row"> | </div>
+    
+     # cat=responsive images/630/106; type=wrap; label=Image no row Wrap: Wrap for image without row
+     norow = <div class="image-norow row"> | </div>
+    
+     # cat=responsive images/630/107; type=wrap; label=Image Wrap: Wrap for single image in art direction mode
+     image = <div class="image-wrap"> | </div>
+    
+     # cat=responsive images/630/108; type=wrap; label=Image column Wrap: Wrap for image column in art direction mode
+     column = <div class="csc-textpic-imagecolumn"> | </div> 
+    }
+    
+    # cat=responsive images/650/180; type=boolean; label=Move css to body: Move background css to body (for ajax)
+    movecsstobody = 1
+ 
+    # cat=responsive images/650/105; type=string; label=BaseUrl for images (domain prefix): override automatic setting, allow get images from nocookies domain (used by default on css backgrounds), fix ie8 / 9 behaivour on ajax calls when base href is set
+    baseUrl =
+    
+    # cat=responsive images/650/105; type=options[Enable=all,Disable=]; label=Force baseUrl prefix on all images src:Add absolute Base Url domain prefix to all images path, allow to get images from nocookies domain (enable = all)
+    absRefPrefix = all
     
     # cat=grid system/610/200; type=int+; label=Number of columns : Maximum number of columns
     columns = 12
@@ -72,8 +121,8 @@ plugin.lef_responsive_images {
     }  
     
     images{
-        # cat=responsive images/650/110; type=options[50%=2,33%=3,25%=4]; label=Image in text width:Divide the available width by this  
-        divideImageAboveTextWidth = 2
+        # cat=responsive images/650/110; type=options[50%=50,40%=40,33%=33.33,25%=25,20%=20]; label=Image in text width ratio:Width ratio of images above text  
+        imageAboveTextWidthRatio = 50
         # cat=responsive images/650/120; type=boolean; label=Image user defined width:Conserve proportion beteween text and image across breakpoint.  
         userWidthProportional = 1
     }
@@ -86,9 +135,9 @@ plugin.lef_responsive_images {
     }
     
     # cat=grid system/630/160; type=string; label=Path to javascript: Path to Javascript plugins
-    js = EXT:lef_responsive_images/Resources/Public/JavaScript/
+    js = /typo3conf/ext/lef_responsive_images/Resources/Public/JavaScript/
     # cat=grid system/630/161; type=string; label=Path to Css: Path to Css files
-    css= EXT:lef_responsive_images/Resources/Public/Css/
+    css= /typo3conf/ext/lef_responsive_images/Resources/Public/Css/
 }
 
 

@@ -1,0 +1,40 @@
+# render using cssbackground layout
+lib.responsiveImages.cssBackgroundImage < tt_content.image
+lib.responsiveImages.cssBackgroundImage {
+# remove stdHeader
+10 >
+20.imageMode.override = 2   
+}
+
+# render page media field using cssbackground layout
+lib.responsiveImages.cssBackgroundMedia  < lib.responsiveImages.cssBackgroundImage
+lib.responsiveImages.cssBackgroundMedia {
+      20{
+       imgList.cObject.references{
+			table = pages
+			uid.data = page:uid
+			fieldName = media
+			
+		}
+	1 = IMAGE	
+	}
+}
+
+# css background image with art Direction (need 5 images to work)
+lib.responsiveImages.cssBackgroundImageArtDirection < lib.responsiveImages.artDirection
+lib.responsiveImages.cssBackgroundImageArtDirection{
+    10 >
+    20.imageMode.override = 3
+ }
+ 
+# render page media field using cssbackground layout and artDirection (need 5 images to work)
+lib.responsiveImages.cssBackgroundMediaArtDirection < lib.responsiveImages.cssBackgroundImageArtDirection
+lib.responsiveImages.cssBackgroundMediaArtDirection{
+  20{
+       imgList.cObject.references{
+			table = pages
+			uid.data = page:uid
+			fieldName = media
+	}
+   }
+}

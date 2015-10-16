@@ -1,0 +1,5 @@
+lib.responsiveImages.artDirection < tt_content.image
+lib.responsiveImages.artDirection{
+	10 >
+	20.imageMode.override = 1
+}

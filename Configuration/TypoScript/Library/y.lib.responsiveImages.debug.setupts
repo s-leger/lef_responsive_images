@@ -1,0 +1,64 @@
+lib.responsiveImages{
+	
+	debug = COA
+	debug {
+	
+	if.isTrue =0
+	
+	10 = TEXT
+	10.value = DEBUG:
+	10.wrap = <div>|</div>
+	
+	20 = TEXT
+	20.value = <div>{field:CType} / {field:tx_gridelements_backend_layout}</div>
+	20.insertData = 1
+	
+	30 = TEXT
+	30.data = debug:register
+	
+#	40 = TEXT
+#	40.data = debug:data
+	
+	 	
+	stdWrap{
+		wrap = <div class="debug col-xs-12">|</div>
+		insertData = 1
+		}
+	}
+}
+
+tt_content {
+    
+    gridelements_pi1.20{
+        6 < lib.responsiveImages.debug
+	6.10.value = AFTER REGISTER :
+	
+	56 < lib.responsiveImages.debug
+	56.10.value = AFTER RESTORE:
+	
+    }
+    
+    image{
+        6  < lib.responsiveImages.debug
+        6.10.value = AFTER REGISTER:
+        56 < lib.responsiveImages.debug
+	56.10.value = AFTER RESTORE:
+    }
+    
+    textpic{
+        6  < lib.responsiveImages.debug
+        6.10.value = AFTER REGISTER:
+        56 < lib.responsiveImages.debug
+	56.10.value = AFTER RESTORE:
+    }
+}
+
+
+lib.dynamicContent{
+	6 < lib.responsiveImages.debug
+	6.10.value = TEMPLATE:
+	
+	106 < lib.responsiveImages.debug
+	106.10.value = TEMPLATE restore:
+	
+}    
