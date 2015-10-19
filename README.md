@@ -1,6 +1,6 @@
 lef_responsive_images php plugin 
 
-Adds advanced features sutch css background and Art-Direction support.
+Adds advanced features such as css background images and Art-Direction support.
 
 A typo3 bootstrap_package extension to allow real image width generation for any breakpoint in fluid design
 
