@@ -1,50 +1,49 @@
 <f:layout name="Default"/>
 <f:section name="Main">
+    <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '3', fluid: '1'}"/>
+    <div class="container">
+        <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '0'}"/>
+    </div>
 
-	<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '3'}"/>
-	<div class="container">
-		<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '0'}"/>
-	</div>
+    <div class="well">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '30',  sm: '6'}"/>
+                </div>
+                <div class="col-sm-6">
+                    <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '31',  sm: '6'}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '32',  sm: '6'}"/>
+                </div>
+                <div class="col-sm-6">
+                    <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '33',  sm: '6'}"/>
+                </div>
+            </div>
+        </div>
+    </div>
 
-	<div class="well">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-6">
-					<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '30', col_sm:'6', col_md:'6', col_lg:'6'}"/>
-				</div>
-				<div class="col-sm-6">
-					<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '31', col_sm:'6', col_md:'6', col_lg:'6'}"/>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-6">
-					<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '32', col_sm:'6', col_md:'6', col_lg:'6'}"/>
-				</div>
-				<div class="col-sm-6">
-					<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '33', col_sm:'6', col_md:'6', col_lg:'6'}"/>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<div class="container">
-		<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '4'}"/>
-		<div class="row">
-			<div class="col-sm-6">
-				<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '34', col_sm:'6', col_md:'6', col_lg:'6'}"/>
-			</div>
-			<div class="col-sm-6">
-				<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '35', col_sm:'6', col_md:'6', col_lg:'6'}"/>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-6">
-				<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '36', col_sm:'6', col_md:'6', col_lg:'6'}"/>
-			</div>
-			<div class="col-sm-6">
-				<f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '37', col_sm:'6', col_md:'6', col_lg:'6'}"/>
-			</div>
-		</div>
-	</div>
+    <div class="container">
+       <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '4'}"/>
+        <div class="row">
+            <div class="col-sm-6">
+                <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '34',  sm: '6'}"/>
+            </div>
+            <div class="col-sm-6">
+                <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '35',  sm: '6'}"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '36',  sm: '6'}"/>
+            </div>
+            <div class="col-sm-6">
+                <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{pageUid: '{data.uid}', colPos: '37',  sm: '6'}"/>
+            </div>
+        </div>
+    </div>
 
 </f:section>

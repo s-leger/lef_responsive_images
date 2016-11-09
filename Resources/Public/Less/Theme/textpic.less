@@ -1,0 +1,36 @@
+//
+// Textpic 
+//
+.textpic {
+  overflow: hidden;
+  &.beside,
+  &.intext{
+    &-right {
+      > .imagewrap {
+        width: 100%;
+        @media (min-width: @screen-sm-min){
+            float: right; 
+            width: auto;
+            margin-left: @grid-gutter-width; 
+        }
+      }
+    } 
+    &-left {
+      > .imagewrap {
+        width: 100%;
+        @media (min-width: @screen-sm-min){
+           float: left; 
+           width: auto;
+           margin-right: @grid-gutter-width;
+        }
+      }
+    }
+  }
+  &.beside {
+    &-left,
+    &-right {
+      // create a bloc formatting context
+      > .textpic-text { overflow: hidden; } 
+    } 
+  }
+}

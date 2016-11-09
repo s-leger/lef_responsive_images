@@ -1,0 +1,14 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+
+<f:comment>Bypass link</f:comment>
+
+<lef:gallery files="{files}" data="{data}" settings="{settings}" imagesize="imagesize" as="gallery">
+
+    <f:if condition="{settings.images.preventrelayout}">
+        <f:render partial="Media/Layouts/PreventRelayout" arguments="{gallery: gallery, settings: settings}" />
+    </f:if>
+    <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+        <f:render partial="Media/Types/Type" arguments="{file: file, data: data, settings: settings}" />
+    </f:for>
+
+</lef:gallery>

@@ -1,0 +1,47 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+<lef:imageSize>
+  <f:if condition="{settings.disable_wrap}">
+    <f:then>
+      <f:render section="Main" />
+    </f:then>
+    <f:else>
+      <f:switch expression="{data.section_frame}">
+        <f:case value="1"><bk2k:var name="sectionClass" value="invisible" /></f:case>
+        <f:case value="5"><bk2k:var name="sectionClass" value="rulerbefore" /></f:case>
+        <f:case value="6"><bk2k:var name="sectionClass" value="rulerafter" /></f:case>
+        <f:case value="10">
+          <bk2k:var name="sectionClass" value="col-xs-10 col-xs-push-1" />
+          <lef:imageSize xs="10"/>
+        </f:case>
+        <f:case value="11">
+          <bk2k:var name="sectionClass" value="col-xs-9 col-xs-push-3" />
+          <lef:imageSize xs="9"/>
+        </f:case>
+        <f:case value="12">
+          <bk2k:var name="sectionClass" value="col-xs-9" />
+          <lef:imageSize xs="9"/>
+        </f:case>
+        <f:case value="20">
+          <bk2k:var name="sectionClass" value="well" />
+          <lef:imageSize marginxs="20"/>
+        </f:case>
+        <f:case value="21">
+          <bk2k:var name="sectionClass" value="jumbotron" />
+          <lef:imageSize marginxs="20" marginsm="60"/>
+        </f:case>
+        <f:case default="TRUE">
+          <bk2k:var name="sectionClass" value="default" />
+        </f:case>
+      </f:switch> 
+      <div id="c{data.uid}" class="{sectionClass}">
+        <f:if condition="{data._LOCALIZED_UID}"><a id="c{data._LOCALIZED_UID}"></a></f:if>
+        <f:render section="Header" />
+        <f:render section="Main" />
+      </div>
+      <f:if condition="{data.linkToTop}">
+        <p class="linkToTop"><a href="#">to top</a></p>
+      </f:if>
+    </f:else>
+  </f:if>
+</lef:imageSize>

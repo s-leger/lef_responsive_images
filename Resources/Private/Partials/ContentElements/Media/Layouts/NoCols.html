@@ -1,0 +1,93 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+
+<f:comment>
+    when fluid, the layout is fixed by css so images resize according.
+    when fixed, the width of columns depends on images.
+    lg = 0
+    md = 1
+    sm = 2
+    xs = 3
+    xxs = 4
+</f:comment>
+
+<f:comment>Equal width for each columns, flexible height</f:comment>
+
+<lef:gallery files="{files}" data="{data}" settings="{settings}" imagesize="imagesize" as="gallery">
+  
+    <f:if condition="{settings.images.preventrelayout}">
+        <f:render partial="Media/Layouts/PreventRelayout" arguments="{gallery: gallery, settings: settings}" />
+    </f:if>
+    
+    <f:switch expression="{data.images_layout}">
+        <f:case value="34">
+            <bk2k:var name="class" value="row-flex-right"/>
+        </f:case>
+        <f:case value="18">
+            <bk2k:var name="class" value="row-flex-left"/>
+        </f:case>
+
+    </f:switch>
+    
+    <lef:css inline="{settings.moveCssToBody}" key="lef_responsive_images_row-justify-{data.uid}">
+        <f:if condition="{settings.images.breakpoint} < 5">
+            <lef:mediaQuery max="xs">
+                <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+                    #col-{data.uid}-{fileIteration.cycle}<f:format.raw>{</f:format.raw>width:{file.srcset.xxs.percent}%<f:format.raw>;}</f:format.raw>
+                </f:for>
+            </lef:mediaQuery>
+        </f:if>
+        <f:if condition="{settings.images.breakpoint} < 4">
+            <lef:mediaQuery min="xs" max="sm">
+                <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+                    #col-{data.uid}-{fileIteration.cycle}<f:format.raw>{</f:format.raw>width:{file.srcset.xs.percent}%<f:format.raw>;}</f:format.raw>
+                </f:for>
+            </lef:mediaQuery>
+        </f:if>
+        <f:if condition="{settings.images.breakpoint} < 3">
+            <lef:mediaQuery min="sm" max="md">
+                <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+                    #col-{data.uid}-{fileIteration.cycle}<f:format.raw>{</f:format.raw>width:{file.srcset.sm.percent}%<f:format.raw>;}</f:format.raw>
+                </f:for>
+            </lef:mediaQuery>
+        </f:if>
+        <f:if condition="{settings.images.breakpoint} < 2">
+            <lef:mediaQuery min="md" max="lg">
+                <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+                    #col-{data.uid}-{fileIteration.cycle}<f:format.raw>{</f:format.raw>width:{file.srcset.md.percent}%<f:format.raw>;}</f:format.raw>
+                </f:for>
+            </lef:mediaQuery>
+        </f:if>
+        <f:if condition="{settings.images.breakpoint} < 1">
+            <lef:mediaQuery min="lg">
+                <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+                    #col-{data.uid}-{fileIteration.cycle}<f:format.raw>{</f:format.raw>width:{file.srcset.lg.percent}%<f:format.raw>;}</f:format.raw>
+                </f:for>
+            </lef:mediaQuery>
+        </f:if>
+    </lef:css>
+  <figure class="image">
+    <div class="row-flex{f:if(condition: '{gallery.lastrow} < 1', then:' row-flex-last')} {class}">
+      
+        <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+            
+            <div id="col-{data.uid}-{fileIteration.cycle}" class="col-flex">
+                <f:render partial="Media/Types/Type" arguments="{file: file, data: data, settings: settings}" />
+            </div>
+            
+            <f:if condition="{fileIteration.cycle} > 0">
+                <f:if condition="{fileIteration.cycle} < {fileIteration.total}">
+                    <f:if condition="{lef:simpleMath(operator: '%', a:'{fileIteration.cycle}', b:'{gallery.imagecols}')} == 0">
+                        </div><div class="row-flex{f:if(condition: '{fileIteration.cycle} = {gallery.lastrow}', then:' row-flex-last')} {class}">
+                    </f:if>
+                </f:if>
+            </f:if>
+        </f:for>
+    </div>
+    <f:if condition="{gallery.files.0.data.description}">
+          <figcaption class="global-caption caption">
+            {gallery.files.0.data.description}
+          </figcaption>  
+    </f:if>
+  </figure>
+</lef:gallery>

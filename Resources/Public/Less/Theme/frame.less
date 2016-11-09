@@ -1,0 +1,42 @@
+//
+// Frames
+// --------------------------------------------------
+.frame {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    @media (min-width: @screen-sm) {
+        padding-top: 1.5em;
+        padding-bottom: 1.5em;
+    }
+    @media (min-width: @screen-md) {
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+    &.rulerbefore {
+        border-top: 1px solid @page-header-border-color;
+        margin-top: 2em;
+    }
+    &.rulerafter {
+        border-bottom: 1px solid @page-header-border-color;
+        margin-bottom: 2em;
+    }
+    &.well {
+        *:first-child {
+            padding-top: 0px;
+        }
+        *:last-child {
+            padding-bottom: 0px;
+        }
+    }
+    > *:last-child {
+        margin-bottom: 0;
+    }
+}
+.frame-small {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    @media (min-width: @screen-sm) {
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+}

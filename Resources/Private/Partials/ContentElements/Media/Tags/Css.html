@@ -1,0 +1,14 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+
+<f:comment>Image tag css</f:comment>
+
+<f:format.raw value="{data.selector}" /><f:format.raw>{
+background-repeat:no-repeat;background-position:center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;
+-ms-filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(src='</f:format.raw>{lef:uri.image(quality:data.quality, image: srcset.lg.src, width: '{srcset.lg.width}{srcset.lg.cropw}', height: '{srcset.lg.height}{srcset.lg.croph}', absolute: settings.absoluteUrl)}<f:format.raw>',sizingMethod='scale')";
+}</f:format.raw>
+<lef:mediaQuery min="lg"><f:format.raw value="{data.selector}" /><f:format.raw>{background-image:url("</f:format.raw>{lef:uri.image(quality:data.quality, image: srcset.lg.src, width: '{srcset.lg.width}{srcset.lg.cropw}', height: '{srcset.lg.height}{srcset.lg.croph}',  absolute: '{settings.absoluteUrl}')}<f:format.raw>");}</f:format.raw></lef:mediaQuery>
+<lef:mediaQuery min="md" max="lg"><f:format.raw value="{data.selector}" /><f:format.raw>{background-image:url("</f:format.raw>{lef:uri.image(quality:data.quality, image: srcset.md.src, width: '{srcset.md.width}{srcset.md.cropw}', height: '{srcset.md.height}{srcset.md.croph}',  absolute: '{settings.absoluteUrl}')}<f:format.raw>");}</f:format.raw></lef:mediaQuery>
+<lef:mediaQuery min="sm" max="md"><f:format.raw value="{data.selector}" /><f:format.raw>{background-image:url("</f:format.raw>{lef:uri.image(quality:data.quality, image: srcset.sm.src, width: '{srcset.sm.width}{srcset.sm.cropw}', height: '{srcset.sm.height}{srcset.sm.croph}',  absolute: settings.absoluteUrl)}<f:format.raw>");}</f:format.raw></lef:mediaQuery>
+<lef:mediaQuery min="xs" max="sm"><f:format.raw value="{data.selector}" /><f:format.raw>{background-image:url("</f:format.raw>{lef:uri.image(quality:data.quality, image: srcset.xs.src, width: '{srcset.xs.width}{srcset.xs.cropw}', height: '{srcset.xs.height}{srcset.xs.croph}',  absolute: settings.absoluteUrl)}<f:format.raw>");}</f:format.raw></lef:mediaQuery>
+<lef:mediaQuery max="xs"><f:format.raw value="{data.selector}" /><f:format.raw>{background-image:url("</f:format.raw>{lef:uri.image(quality:data.quality, image: srcset.xxs.src, width: '{srcset.xxs.width}{srcset.xxs.cropw}', height: '{srcset.xxs.height}{srcset.xxs.croph}',  absolute: settings.absoluteUrl)}<f:format.raw>");}</f:format.raw></lef:mediaQuery>

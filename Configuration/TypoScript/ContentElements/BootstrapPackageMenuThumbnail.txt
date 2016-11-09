@@ -1,0 +1,76 @@
+#################################################
+#### CTYPE: BOOTSTRAP PACKAGE MENU THUMBNAIL ####
+#################################################
+
+tt_content.menu.thumbnail_list = FLUIDTEMPLATE
+tt_content.menu.thumbnail_list {
+
+    ################
+    ### TEMPLATE ###
+    ################
+    templateName = BootstrapPackageMenuThumbnail
+    templateRootPaths {
+        0 = EXT:bootstrap_package/Resources/Private/Templates/ContentElements/
+        10 = {$plugin.bootstrap_package_contentelements.view.templateRootPath}
+        15 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_contentelements.templateRootPaths}
+    }
+    partialRootPaths {
+        0 = EXT:bootstrap_package/Resources/Private/Partials/ContentElements/
+        10 = {$plugin.bootstrap_package_contentelements.view.partialRootPath}
+        15 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_contentelements.partialRootPaths}
+    }
+    layoutRootPaths {
+        0 = EXT:bootstrap_package/Resources/Private/Layouts/ContentElements/
+        10 = {$plugin.bootstrap_package_contentelements.view.layoutRootPath}
+        15 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_contentelements.layoutRootPaths}
+    }
+    ################
+    ### SETTINGS ###
+    ################
+    settings {
+        media {
+            ratio = {$plugin.bootstrap_package_contentelements.menu_thumbnails.media.ratio} 
+            width = {$plugin.bootstrap_package_contentelements.menu_thumbnails.media.width}
+            height = {$plugin.bootstrap_package_contentelements.menu_thumbnails.media.height}
+        }
+        title {
+            crop = {$plugin.bootstrap_package_contentelements.menu_thumbnails.title.crop}
+        }
+        abstract {
+            crop = {$plugin.bootstrap_package_contentelements.menu_thumbnails.title.crop}
+        }
+        lightbox {
+            cssClass = {$plugin.bootstrap_package_contentelements.lightbox.cssClass}
+            prefix = {$plugin.bootstrap_package_contentelements.lightbox.prefix}
+        }
+        images < lib.tx_lefglobalsettings.settings.images
+        moveCssToBody = {$plugin.tx_lefglobalsettings.settings.css.moveCssToBody}
+    }
+
+    ##########################
+    ### DATA PREPROCESSING ###
+    ##########################
+    dataProcessing {
+        10 = LEF\LefResponsiveImages\DataProcessing\MenuProcessor
+        10 {
+            special = list
+            special.value.field = pages
+            dataProcessing {
+                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                10 {
+                    references.fieldName = media
+                }
+                20 = LEF\LefResponsiveImages\DataProcessing\ImageMetadataProcessor
+            }
+        }
+    }
+
+}
+tt_content.menu.thumbnail_dir < tt_content.menu.thumbnail_list
+tt_content.menu.thumbnail_dir {
+    dataProcessing {
+        10 {
+            special = directory
+        }
+    }
+}

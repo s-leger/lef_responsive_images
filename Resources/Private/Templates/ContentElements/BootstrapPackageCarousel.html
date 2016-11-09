@@ -1,0 +1,71 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+<f:layout name="Default"/>
+<f:section name="Header">
+
+    <f:render partial="Header/All" arguments="{_all}" />
+
+</f:section>
+<f:section name="Main">
+<lef:imageSize>
+    <f:if condition="{records}">
+        <lef:css inline="{settings.moveCssToBody}">
+             <f:switch expression="{data.pi_flexform.height_mode}">
+                 <f:case value="2">
+#carousel-{data.uid} .item<f:format.raw>{height:100vh;padding-bottom:0;}</f:format.raw>
+                 </f:case>
+                  <f:case value="1">
+<lef:mediaQuery min="lg">#carousel-{data.uid} .item<f:format.raw>{height:0;padding-bottom:</f:format.raw>{data.pi_flexform.lg}px<f:format.raw>;}</f:format.raw></lef:mediaQuery>
+<lef:mediaQuery min="md" max="lg">#carousel-{data.uid} .item<f:format.raw>{height:0;padding-bottom:</f:format.raw>{data.pi_flexform.md}px<f:format.raw>;}</f:format.raw></lef:mediaQuery>
+<lef:mediaQuery min="sm" max="md">#carousel-{data.uid} .item<f:format.raw>{height:0;padding-bottom:</f:format.raw>{data.pi_flexform.sm}px<f:format.raw>;}</f:format.raw></lef:mediaQuery>
+<lef:mediaQuery max="sm">#carousel-{data.uid} .item<f:format.raw>{height:0;padding-bottom:</f:format.raw>{data.pi_flexform.xs}px<f:format.raw>;}</f:format.raw></lef:mediaQuery>
+                </f:case>
+                <f:case value="0">
+#carousel-{data.uid} .item<f:format.raw>{height:0;padding-bottom:</f:format.raw>{data.pi_flexform.ratio}%<f:format.raw>;}</f:format.raw>
+                 </f:case>
+             </f:switch>
+        </lef:css>
+        <div id="carousel-{data.uid}"
+                class="carousel carousel-transition-{data.pi_flexform.transition} slide"
+                data-interval="{data.pi_flexform.interval}"
+                data-wrap="{data.pi_flexform.wrap}"
+                data-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+                <f:for each="{records}" as="item" iteration="iteration">
+                    <bk2k:var name="itemId">slide-{data.uid}-{iteration.cycle}</bk2k:var>
+
+                    <f:if condition="{item.backgroundImage.0}">
+                         <f:render partial="Media/Gallery" arguments="{files: item.backgroundImage, data: {imagecols: 1, section_frame: data.section_frame, image_cssselector: '#{itemId}', image_rendering: '4' }, settings: settings, imagesize: imagesize}"/>
+                    </f:if>
+
+                    <bk2k:var name="itemStyleColor">
+                        <f:if condition="{item.data.background_color}">background-color: {item.data.background_color};</f:if>
+                    </bk2k:var>
+                    <div id="{itemId}"
+                        class="item{f:if(condition: iteration.isFirst,then:' active')} carousel-item-type carousel-item-type-{item.data.item_type}"
+                        data-itemno="{iteration.index}" style="{itemStyleColor}">
+
+
+                          <f:switch expression="{item.data.item_type}">
+                            <f:case value="header">
+                              <f:link.page pageUid="{item.data.link}" additionalAttributes="{draggable:'false'}">
+                                <f:render partial="Carousel/Item/Header" arguments="{_all}"/>
+                              </f:link.page>
+                            </f:case>
+                            <f:case value="textandimage">
+                              <f:link.page pageUid="{item.data.link}" additionalAttributes="{draggable:'false'}">
+                                <f:render partial="Carousel/Item/TextAndImage" arguments="{_all}"/>
+                              </f:link.page>
+                            </f:case>
+                            <f:case value="html">{item.data.bodytext->f:format.raw()}</f:case>
+                          </f:switch>
+
+                    </div>
+                </f:for>
+            </div>
+            <f:render partial="Carousel/Control/Indicator" arguments="{_all}"/>
+            <f:render partial="Carousel/Control/Control" arguments="{_all}"/>
+        </div>
+    </f:if>
+</lef:imageSize>
+</f:section>

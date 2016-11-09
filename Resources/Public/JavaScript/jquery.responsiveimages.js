@@ -1,181 +1,182 @@
 /* ========================================================================
-* This is a adjusted version of Luís Almeida jQuery Unveil Script
-* http://luis-almeida.github.com/unveil
-* using verge.js methods for accurate viewport width detection
-* ======================================================================== */
+ * Responsive Image
+ *
+ * Inspired by:
+ * http://luis-almeida.github.com/unveil
+ * http://verge.airve.com/
+ * ======================================================================== */
 
 +function($) {
 
-	var $lazyload;
+    // cache img.lazyload collection
+    var $lazyload;
 
-	// VIEWPORT HELPER CLASS DEFINITION
-	// ================================
-	var viewport;
-	var ViewPort = function(options){
-		this.width  = 0;
-		this.height = 0;
-		this.options  = $.extend({}, ViewPort.DEFAULTS, options);
-		this.attrib = "src";
-		this.update();
-	};
+    // VIEWPORT HELPER CLASS DEFINITION
+    // ================================
+    var viewport;
+    var ViewPort = function(options){
+        this.viewportWidth  = 0;
+        this.viewportHeight = 0;
+        this.options  = $.extend({}, ViewPort.DEFAULTS, options);
+        this.attrib = "src";
+        this.update();
+    };
 
-	ViewPort.DEFAULTS = {
-		breakpoints : {
-			0: 'xsmall',
-			480:'small',
-			768: 'medium',
-			992: 'large',
-			1200: 'bigger'
-		}
-	}
+    ViewPort.DEFAULTS = {
+        breakpoints :{
+          0:"xsmall",
+          480:"small",
+          768:"medium",
+          992:"large",
+          1200:"bigger"
+        }
+    }
 
-	ViewPort.prototype.viewportW = function() {
-		var a = document.documentElement['clientWidth'], b = window['innerWidth'];
-		return  a < b ? b : a;
-	};
+    ViewPort.prototype.viewportW = function() {
+        var clientWidth = document.documentElement['clientWidth'], innerWidth = window['innerWidth'];
+        return this.viewportWidth = clientWidth < innerWidth ? innerWidth : clientWidth;
+    };
 
-	ViewPort.prototype.viewportH = function() {
-		var a = document.documentElement['clientHeight'], b = window['innerHeight'];
-		return  a < b ? b : a;
-	};
+    ViewPort.prototype.viewportH = function() {
+        var clientHeight = document.documentElement['clientHeight'], innerHeight = window['innerHeight'];
+        return this.viewportHeight = clientHeight < innerHeight ? innerHeight : clientHeight;
+    };
 
-	ViewPort.prototype.inviewport = function(boundingbox) {
-		return !!boundingbox && boundingbox.bottom >= 0 && boundingbox.right >= 0 && boundingbox.top <= this.height && boundingbox.left <= this.width;
-	};
+    ViewPort.prototype.inviewport = function(boundingbox) {
+        return !!boundingbox && boundingbox.bottom >= 0 && boundingbox.right >= 0 && boundingbox.top <= this.viewportHeight && boundingbox.left <= this.viewportWidth;
+    };
 
-	ViewPort.prototype.update = function(){
+    ViewPort.prototype.update = function(){
+        this.viewportH();
+        this.viewportW();
+        var attrib  = this.attrib,
+            width   = this.viewportWidth;
 
-		this.width  = this.viewportW();
-		this.height = this.viewportH();
+        $.each(this.options.breakpoints, function (breakpoint, datakey) {
+            if (width >= breakpoint) {
+                attrib = datakey;
+            }
+        });
 
-		var attrib 	= this.attrib,
-		width 	= this.width;
+        this.attrib = attrib;
+    };
 
-		$.each(this.options.breakpoints, function (breakpoint, datakey) {
-			if (width >= breakpoint) {
-				attrib = datakey;
-			}
-		});
+    // expose viewportH & viewportW methods
+    $.fn.viewportH = ViewPort.prototype.viewportH;
+    $.fn.viewportW = ViewPort.prototype.viewportW;
 
-		this.attrib = attrib;
-	};
+    // RESPONSIVE IMAGES CLASS DEFINITION
+    // ==================================
+    var ResponsiveImage = function(element, options) {
+        this.$element  = $(element);
+        this.options  = $.extend({}, ResponsiveImage.DEFAULTS, options);
+        this.attrib   = "src";
+        this.loaded    = false;
+        this.checkviewport();
+    };
 
-	// expose viewportH & viewportW methods
-	$.fn.viewportH = ViewPort.prototype.viewportH;
-	$.fn.viewportW = ViewPort.prototype.viewportW;
+    ResponsiveImage.DEFAULTS = {
+        threshold: 100,
+        attrib: "src",
+        skip_invisible: false,
+        preload: false
+    };
 
+    ResponsiveImage.prototype.checkviewport = function() {
+        if (this.attrib !== viewport.attrib) {
+            this.attrib = viewport.attrib;
+            this.loaded = false;
+        }
+        this.unveil();
+    };
 
-	// RESPONSIVE IMAGES CLASS DEFINITION
-	// ==================================
-	var ResponsiveImage = function(element, options) {
-		this.$element  = $(element);
-		this.options  = $.extend({}, ResponsiveImage.DEFAULTS, options);
-		this.attrib   = "src";
-		this.loaded    = false;
-		this.retina    = window.devicePixelRatio && window.devicePixelRatio > 1;
-		this.checkviewport();
-	};
+    ResponsiveImage.prototype.boundingbox = function() {
+        var boundingbox = {},
+            coords    = this.$element[0].getBoundingClientRect(),
+            threshold = +this.options.threshold || 0;
+        boundingbox['right']  = coords['right']  + threshold; boundingbox['left'] = coords['left'] - threshold;
+        boundingbox['bottom'] = coords['bottom'] + threshold; boundingbox['top']  = coords['top']  - threshold;
+        return boundingbox;
+    };
 
-	ResponsiveImage.DEFAULTS = {
-		threshold: 100,
-		attrib: "src",
-		skip_invisible: false,
-		preload: false
-	};
+    ResponsiveImage.prototype.inviewport = function() {
+        var boundingbox = this.boundingbox();
+        return viewport.inviewport(boundingbox);
+    };
 
-	ResponsiveImage.prototype.checkviewport = function() {
-		if (this.attrib !== viewport.attrib) {
-			this.attrib = viewport.attrib;
-			this.loaded = false;
-		}
-		//  console.log('ResponsiveImage.prototype.checkviewport this.attrib'+this.attrib+' breakpoints.attrib'+viewport.attrib)
-		this.unveil();
-	};
+    ResponsiveImage.prototype.unveil = function(force) {
+        if (this.loaded || !force && !this.options.preload && this.options.skip_invisible && this.$element.is(":hidden")) return;
+        var inview = force || this.options.preload || this.inviewport();
+        if(inview){
+            var source = this.options[this.attrib] || this.options["src"];
+            if (source) {
+                this.$element.attr("src", source);
+                this.$element.addClass("loaded", 1);
+                $(window).trigger('loaded.bk2k.responsiveimage');
+                this.loaded  = true;
+            }
+        }
+    };
+    
+    ResponsiveImage.prototype.print = function() {
+        this.unveil(true);
+    }
 
-	ResponsiveImage.prototype.boundingbox = function() {
-		var boundingbox = {},
-		coords    = this.$element[0].getBoundingClientRect(),
-		threshold = +this.options.threshold || 0;
-		boundingbox['right']  = coords['right']  + threshold; boundingbox['left'] = coords['left'] - threshold;
-		boundingbox['bottom'] = coords['bottom'] + threshold; boundingbox['top']  = coords['top']  - threshold;
-		return boundingbox;
-	};
+    // RESPONSIVE IMAGES PLUGIN DEFINITION
+    // ===================================
+    function Plugin(option) {
+        $lazyload = this;
+        return this.each(function() {
+            var $this   = $(this);
+            var data    = $this.data('bk2k.responsiveimage');
+            var options = typeof option === 'object' && option;
 
-	ResponsiveImage.prototype.inviewport = function() {
-		var boundingbox = this.boundingbox();
-		return viewport.inviewport(boundingbox);
-	};
+            if (!data) {
+                if (!viewport) viewport = new ViewPort(options && options.breakpoints ? {breakpoints:options.breakpoints} : {});
 
-	ResponsiveImage.prototype.unveil = function() {
-		if (this.loaded || !this.options.preload && this.options.skip_invisible && this.$element.is(":hidden")) return;
-		var inview = this.options.preload || this.inviewport();
-		//	console.log('unveil  inview:'+inview);
-		if(inview){
-			var source = this.options[(this.retina ? "retina-" : "") + this.attrib] ||
-			this.options[this.attrib] ||
-			this.options["src"];
-			if (source) {
-				this.$element.attr("src", source);
-				this.$element.css("opacity", 1);
-				// fire a user event to allow callbacks when image changes
-				// not optimal since it does fire when image start to load
-				// but does work on any browser
-				// meant to be catched with a setTimeout based handler
-				$(window).trigger('loaded.bk2k.responsiveimage');
-				this.loaded = true;
-			}
-		}
-	};
+                if (options && options.breakpoints) options.breakpoints = null;
+                options = $.extend({}, $this.data(), options);
 
-	// RESPONSIVE IMAGES PLUGIN DEFINITION
-	// ===================================
-	function Plugin(option) {
-		$lazyload = this;
-		return this.each(function() {
-			var $this   = $(this);
-			var data    = $this.data('bk2k.responsiveimage');
-			var options = typeof option === 'object' && option || {};
+                $this.data('bk2k.responsiveimage', (data = new ResponsiveImage(this, options)));
+            }
+            if (typeof option === 'string') data[option]();
+        });
+    };
 
-			if (!data) {
-				if (!viewport) viewport = new ViewPort(options && options.breakpoints ? {breakpoints:options.breakpoints} : {});
-				if (options && options.breakpoints) options.breakpoints = null;
+    var old = $.fn.responsiveimages;
 
-				options = $.extend({}, $this.data(), options);
-				$this.data('bk2k.responsiveimage', (data = new ResponsiveImage(this, options)));
-			}
-			if (typeof option === 'string') data[option]();
-		});
-	};
-
-	var old = $.fn.responsiveimages;
-
-	$.fn.responsiveimage              = Plugin;
-	$.fn.responsiveimage.Constructor  = ResponsiveImage;
+    $.fn.responsiveimage        = Plugin;
+    $.fn.responsiveimage.Constructor  = ResponsiveImage;
 
 
-	// RESPONSIVE IMAGES NO CONFLICT
-	// =============================
-	$.fn.responsiveimage.noConflict = function() {
-		$.fn.responsiveimage = old;
-		return this;
-	};
+    // RESPONSIVE IMAGES NO CONFLICT
+    // =============================
+    $.fn.responsiveimage.noConflict = function() {
+        $.fn.responsiveimage = old;
+        return this;
+    };
 
-	// RESPONSIVE IMAGES API
-	// =====================
-	$(window).on('load.bk2k.responsiveimage', function() {
 
-		$('img.lazyload').responsiveimage();
+    // RESPONSIVE IMAGES API
+    // =====================
+    $(window).on('load.bk2k.responsiveimage', function() {
+        $('img.lazyload').responsiveimage();
 
-		// EVENTS
-		// ======
-		$(window)
-		.on('scroll.bk2k.responsiveimage', function(){
-			$lazyload.responsiveimage('unveil');
-		})
-		.on('resize.bk2k.responsiveimage', function(){
-			if (viewport) viewport.update();
-			$lazyload.responsiveimage('checkviewport');
-		});
-	});
+
+        // EVENTS
+        // ======
+        $(window)
+            .on('scroll.bk2k.responsiveimage', function(){
+                $lazyload.responsiveimage('unveil');
+            })
+            .on('resize.bk2k.responsiveimage', function(){
+                if (viewport) viewport.update();
+                $lazyload.responsiveimage('checkviewport');
+            })
+            .on('beforeprint.bk2k.responsiveimage', function(){
+                $lazyload.responsiveimage('print');
+                $(window).trigger("readytoprint.bk2k.responsiveimage");
+            });
+    });
 
 }(jQuery);

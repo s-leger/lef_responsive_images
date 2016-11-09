@@ -1,0 +1,46 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+<f:if condition="{files}">
+    
+    <f:switch expression="{data.image_rendering}">
+      
+       <f:case value="0">
+            
+           <f:comment>Resize images according frames</f:comment>
+            
+           <f:switch expression="{lef:simpleMath(operator: '&', a:'3', b: '{data.images_layout}')}">
+                
+               <f:case value="0">
+                   <f:render partial="Media/Layouts/Default" arguments="{files: files, data: data, settings: settings, imagesize: imagesize}" />
+               </f:case>
+
+               <f:case value="1">
+                   <f:render partial="Media/Layouts/NoRows" arguments="{files: files, data: data, settings: settings, imagesize: imagesize}" />
+               </f:case>
+                
+               <f:case value="2">
+                   <f:render partial="Media/Layouts/NoCols" arguments="{files: files, data: data, settings: settings, imagesize: imagesize}" />
+               </f:case>
+                
+           </f:switch>
+       </f:case>        
+      
+       <f:case value="4">
+            <f:render partial="Media/Layouts/Css" arguments="{files: files, data: data, settings: settings, imagesize: imagesize}" />
+        </f:case>
+        
+        <f:case value="47">
+            <f:comment>Lightbox link only</f:comment>
+            <f:for each="{files}" as="file">
+                <f:render partial="Media/Types/LightboxLink" arguments="{file: file, data: data, settings: settings}" />
+            </f:for>
+        </f:case>
+        
+        <f:case value="64">
+            <f:comment>Bypass link wrapper arround images</f:comment>
+            <f:render partial="Media/Layouts/NoLink" arguments="{files: files, data: data, settings: settings, imagesize: imagesize}" />          
+        </f:case>
+        
+        
+    </f:switch>
+</f:if>
+

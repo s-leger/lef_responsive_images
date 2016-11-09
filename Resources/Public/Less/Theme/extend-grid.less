@@ -1,0 +1,97 @@
+//
+// Generate columns for 5 7 8 9 10 items (only width) class names are xs-1-5 xs-1-7 ...
+//
+
+@bases: 5, 7, 8, 9, 10;
+.extend-grid-columns(@bases);
+
+.extend-grid(xs, @bases);
+@media (min-width: @screen-sm-min) {
+    .extend-grid(sm, @bases);
+}
+@media (min-width: @screen-md-min) {
+    .extend-grid(md, @bases);
+}
+@media (min-width: @screen-lg-min) {
+    .extend-grid(lg, @bases);
+}
+
+
+//
+// Multiple images layout
+//
+
+.row-flex {
+    overflow: hidden;
+}
+.col-flex {
+      float: left;
+}
+
+// 
+// Border space for images
+// note : on fluid layouts, use relative gutter size to maintain vertical ratio
+//
+@screen-flex-xs: (@screen-xs - @grid-gutter-width);
+
+.row-flex{
+      margin-left:  (100% * (@borderspace-xs / @screen-flex-xs) / -2);
+      margin-right: (100% * (@borderspace-xs / @screen-flex-xs) / -2); 
+      padding-bottom: (100% * (@borderspace-xs / @screen-flex-xs) / 1);
+    }
+.col-flex {
+        padding-left:  (100% * (@borderspace-xs / (@borderspace-xs + @screen-flex-xs)) / 2);
+        padding-right: (100% * (@borderspace-xs / (@borderspace-xs + @screen-flex-xs)) / 2);
+        > .image-flex{
+           padding-bottom: @borderspace-xs;
+           &:last-child {
+              padding-bottom: 0;
+           }
+        }
+   }  
+
+@screen-flex-sm: (@screen-sm - @grid-gutter-width);
+
+@media (min-width: @screen-xs-min) and (max-width: @screen-sm) {
+.row-flex{
+      margin-left:  (100% *(@borderspace-xs / @screen-flex-sm) / -2);
+      margin-right: (100% *(@borderspace-xs / @screen-flex-sm) / -2); 
+      padding-bottom: (100% * (@borderspace-xs / @screen-flex-sm) / 1);
+    }
+.col-flex {
+        padding-left:  (100% * (@borderspace-xs / (@borderspace-xs + @screen-flex-sm)) / 2);
+        padding-right: (100% * (@borderspace-xs / (@borderspace-xs + @screen-flex-sm)) / 2);
+        > .image-flex{
+           padding-bottom: @borderspace-xs;
+
+           &:last-child {
+              padding-bottom: 0;
+           }
+        }  
+   }  
+}
+.row-flex.row-flex-last{
+    padding-bottom:0;
+}
+@media (min-width: @screen-sm-min) and (max-width: @screen-md) {
+    .grid-flex(@borderspace-sm);
+}
+@media (min-width: @screen-md-min) and (max-width: @screen-lg) {
+    .grid-flex(@borderspace-md);
+}
+@media (min-width: @screen-lg-min) {
+    .grid-flex(@borderspace-lg);
+}
+
+.col-flex-top{
+    vertical-align: top;
+}
+.col-flex-bottom{
+    vertical-align: bottom;
+}
+
+.row-flex-right{
+    > .col-flex{
+       float: right;
+    }
+}

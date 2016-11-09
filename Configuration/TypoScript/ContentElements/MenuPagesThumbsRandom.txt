@@ -1,0 +1,54 @@
+#############################################################
+#### CTYPE: MENU OF SUBPAGES TO THESE PAGES AND SECTIONS ####
+#############################################################
+tt_content.menu.pages_thumbs_random = FLUIDTEMPLATE
+tt_content.menu.pages_thumbs_random {
+    ################
+    ### TEMPLATE ###
+    ################
+    templateName = MenuPagesThumbsRandom
+    templateRootPaths.15 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_contentelements.templateRootPaths}
+    partialRootPaths.15 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_contentelements.partialRootPaths}
+    layoutRootPaths.15 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_contentelements.layoutRootPaths}
+
+    ################
+    ### SETTINGS ###
+    ################
+    settings {
+       
+        title {
+            crop = {$plugin.tx_lefglobalsettings.menu.pages_thumbs_random.title.crop}
+        }
+        abstract {
+            crop = {$plugin.tx_lefglobalsettings.menu.pages_thumbs_random.abstract.crop}
+        }
+        lightbox {
+            cssClass = {$plugin.bootstrap_package_contentelements.lightbox.cssClass}
+            prefix = {$plugin.bootstrap_package_contentelements.lightbox.prefix}
+        }
+        images < plugin.tx_lefglobalsettings.settings.images
+        moveCssToBody = {$plugin.tx_lefglobalsettings.settings.css.moveCssToBody}
+    }
+    ##########################
+    ### DATA PREPROCESSING ###
+    ##########################
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+        10 {
+            table = pages
+            orderBy = rand()
+            languageField = sys_language_uid 
+            max = {$plugin.tx_lefglobalsettings.menu.pages_thumbs_random.maxitems}
+            where = media > 0
+            as = menu
+            recursive = 3
+            pidInList = 1
+            dataProcessing {
+                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                10 {
+                    references.fieldName = media
+                }
+            }
+        }
+    }
+}

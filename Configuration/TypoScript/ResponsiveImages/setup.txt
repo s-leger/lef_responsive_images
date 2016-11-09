@@ -1,0 +1,95 @@
+plugin.tx_lefglobalsettings {
+
+  settings {
+
+    grid {
+
+      # gutter size
+      gutter = {$plugin.tx_lefglobalsettings.settings.grid.gutter}
+
+      # max number of columns
+      columns = {$plugin.tx_lefglobalsettings.settings.grid.columns}
+
+      container {
+        xxs = {$plugin.tx_lefglobalsettings.settings.grid.container.xxs}
+        xs = {$plugin.tx_lefglobalsettings.settings.grid.container.xs}
+        sm = {$plugin.tx_lefglobalsettings.settings.grid.container.sm}
+        md = {$plugin.tx_lefglobalsettings.settings.grid.container.md}
+        lg = {$plugin.tx_lefglobalsettings.settings.grid.container.lg}
+      }
+      screen {
+        xs = {$plugin.tx_lefglobalsettings.settings.grid.screen.xs}
+        sm = {$plugin.tx_lefglobalsettings.settings.grid.screen.sm}
+        md = {$plugin.tx_lefglobalsettings.settings.grid.screen.md}
+        lg = {$plugin.tx_lefglobalsettings.settings.grid.screen.lg}
+        xl = {$plugin.tx_lefglobalsettings.settings.grid.screen.xl}
+      }
+      breakpoint = {$plugin.tx_lefglobalsettings.settings.grid.breakpoint}
+    }
+    images {
+      quality = {$plugin.tx_lefglobalsettings.settings.images.quality}
+      maxwidth = {$plugin.tx_lefglobalsettings.settings.images.maxwidth}
+      maxheight = {$plugin.tx_lefglobalsettings.settings.images.maxheight}
+
+      layout.columnsheightratio = {$plugin.tx_lefglobalsettings.settings.images.layout.columnsheightratio}
+      placeholder.size = {$plugin.tx_lefglobalsettings.settings.images.placeholder.size}
+      placeholder.mode = {$plugin.tx_lefglobalsettings.settings.images.placeholder.mode}
+      borderspace {
+        xxs = {$plugin.tx_lefglobalsettings.settings.images.borderspace.xs}
+        xs = {$plugin.tx_lefglobalsettings.settings.images.borderspace.xs}
+        sm = {$plugin.tx_lefglobalsettings.settings.images.borderspace.sm}
+        md = {$plugin.tx_lefglobalsettings.settings.images.borderspace.md}
+        lg = {$plugin.tx_lefglobalsettings.settings.images.borderspace.lg}
+      }
+      
+    }
+  }
+}
+
+page {
+    includeJSFooterlibs {
+        responsiveimages = EXT:lef_responsive_images/Resources/Public/JavaScript/jquery.responsiveimages.min.js
+        responsiveimages.if {
+            value = 1
+            equals = {$plugin.tx_lefglobalsettings.settings.images.tag}
+        }
+        blazy = EXT:lef_responsive_images/Resources/Public/JavaScript/blazy.min.js
+        blazy.if {
+            value = 1
+            equals = {$plugin.tx_lefglobalsettings.settings.images.tag}
+            negate = 1
+        }
+    }
+
+    jsFooterInline {
+        # b-lazy
+        50 = COA
+        50 {
+            if {
+                value = 1
+                equals = {$plugin.tx_lefglobalsettings.settings.images.tag}
+                negate = 1
+            }
+            10 = TEXT
+            10.value (
+                ;(function() {
+                    var bLazy = new Blazy({
+                     selector:'.lazyload',
+                     successClass:'loaded', 
+                     success:function(){
+                        $(window).trigger('loaded.bk2k.responsiveimage');
+                     },
+                     error:function(){
+                     },
+                     loadInvisible: true 
+                    // container:'body'
+                    });
+                    $(window).on('beforeprint.bk2k.responsiveimage', function(){
+                        bLazy.load('.lazyload', true);
+                        $(window).trigger("readytoprint.bk2k.responsiveimage");
+                    });
+                })();
+            )
+        }
+    }
+}

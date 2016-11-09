@@ -1,0 +1,34 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+
+<f:comment>Image tag Img with data attributes, this is the compatible old mode working nearly everywhere</f:comment>
+
+
+<div id="{data.selector}" {f:if(condition: '{settings.images.preventrelayout}', then: 'class="embed-responsive"')}>
+    <img
+    <f:switch expression="{settings.images.placeholder}">
+        <f:case value="0">
+            src="{f:uri.image(src: 'EXT:lef_responsive_images/Resources/Public/Images/blank.gif')}"
+        </f:case>
+        <f:case value="1">
+            src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+        </f:case>
+        <f:case value="2">
+            src="{lef:uri.image(image: srcset.lg.src, width: '{data.placeholder.width}{srcset.lg.cropw}', height: '{data.placeholder.height}{srcset.lg.croph}', absolute: '{settings.images.absoluteUrl}')}"
+        </f:case>
+    </f:switch>
+    data-src="{lef:uri.image(quality: data.quality, image: srcset.lg.src, absolute: '{settings.images.absoluteUrl}')}"
+    data-bigger="{lef:uri.image(quality: data.quality, image: srcset.lg.src, width: '{srcset.lg.width}{srcset.lg.cropw}', height: '{srcset.lg.height}{srcset.lg.croph}', absolute: '{settings.images.absoluteUrl}')}"
+    data-large="{lef:uri.image(quality: data.quality, image: srcset.md.src, width: '{srcset.md.width}{srcset.md.cropw}', height: '{srcset.md.height}{srcset.md.croph}', absolute: '{settings.images.absoluteUrl}')}"
+    data-medium="{lef:uri.image(quality: data.quality, image: srcset.sm.src, width: '{srcset.sm.width}{srcset.sm.cropw}', height: '{srcset.sm.height}{srcset.sm.croph}', absolute: '{settings.images.absoluteUrl}')}"
+    data-small="{lef:uri.image(quality: data.quality, image: srcset.xs.src, width: '{srcset.xs.width}{srcset.xs.cropw}', height: '{srcset.xs.height}{srcset.xs.croph}', absolute: '{settings.images.absoluteUrl}')}"
+    data-xsmall="{lef:uri.image(quality: data.quality, image: srcset.xxs.src, width: '{srcset.xxs.width}{srcset.xxs.cropw}', height: '{srcset.xxs.height}{srcset.xxs.croph}', absolute: '{settings.images.absoluteUrl}')}"
+    title="{data.title}"
+    alt="{data.alternative}"
+    class="lazyload"
+    data-preload="{f:if(condition: settings.media.preload, then: 'true', else: 'false')}"
+    />
+    <noscript>
+        <img src="{lef:uri.image(quality: data.quality, image: srcset.lg.src, absolute: '{settings.images.absoluteUrl}')}" title="{data.title}" alt="{data.alternative}" />
+    </noscript>
+</div>

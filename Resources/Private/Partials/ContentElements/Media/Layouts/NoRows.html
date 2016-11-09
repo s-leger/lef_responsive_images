@@ -1,0 +1,39 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+
+<f:comment>Equal width for each column, flexible height</f:comment>
+
+<lef:gallery files="{files}" data="{data}" settings="{settings}" imagesize="imagesize" as="gallery">
+
+    <f:if condition="{settings.images.preventrelayout}">
+        <f:render partial="Media/Layouts/PreventRelayout" arguments="{gallery: gallery, settings: settings}" />
+    </f:if>
+
+    <lef:css inline="{settings.moveCssToBody}" key="lef_responsive_images_colums-{data.uid}">
+        #row-{data.uid} > .col-flex<f:format.raw>{</f:format.raw>width:{gallery.colpercent}%;<f:format.raw>}</f:format.raw>
+    </lef:css>
+    <figure class="image">
+    <div class="row-flex row-flex-last" id="row-{data.uid}">
+        <div class="col-flex">
+            <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+              <div class="image-flex">
+                <f:render partial="Media/Types/Type" arguments="{file: file, data: data, settings: settings}" />
+              </div>
+                <f:if condition="{fileIteration.index} > 0">
+                    <f:if condition="{fileIteration.cycle} < {fileIteration.total}">
+                        <f:if condition="{lef:simpleMath(a:'{fileIteration.cycle}', b:'{gallery.imagecols}', operator:'%')} < 0.1">
+                            </div><div class="col-flex">
+                        </f:if>
+                    </f:if>
+                </f:if>
+            </f:for>
+        </div>                  
+    </div>
+    <f:if condition="{gallery.files.0.data.description}">
+      <figcaption class="global-caption caption">
+            {gallery.files.0.data.description}
+      </figcaption>  
+    </f:if>
+   </figure>            
+</lef:gallery>
+

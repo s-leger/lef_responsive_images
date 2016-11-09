@@ -1,54 +1,61 @@
 #################
 #### TCEFORM ####
 #################
-
-TCEFORM.tt_content{
-  imageheight {
-    types {
-      textpic.disabled = 1
-      image.disabled = 1
+TCEFORM {
+    tt_content {
+        menu_type {
+           addItems {
+              content_thumbs = Teasers of current page contents
+              pages_thumbs_random = Teasers of random pages
+              content_thumbs_random = Teasers of random sub pages contents 
+           }
+        }
+        linkToTop.disabled = 0
+        layout {
+            types {
+               
+                html{
+                   removeItems = 1,2,3,4
+            addItems {
+               100 = Css on head
+               110 = JavaScript in footer
+            } 
+                }
+            }
+        }
+        imagecols {
+            removeItems >
+            addItems {
+               9 = 9
+               10 = 10
+            }
+        }
+        imageheight.disabled >
+        imagewidth.disabled >
+        imageorient {
+            removeItems >
+            types {
+                image {
+                    disabled = 1
+                }
+                textmedia{
+                    removeItems = 17,18
+                }
+            }
+        }
+        images_layout {
+           // disable columns bottom not working 
+           removeItems = 33
+        }
+        // user defineable rendering methods
+        image_rendering {
+           // for future use (img/srcset/picture)
+           types {
+               textpic {
+                   removeItems =  1,2,3,18,19,47
+               }
+           }
+       }
     }
-  }
-  imagewidth {
-    types {
-      textpic.disabled = 0
-      image.disabled = 0
-    }
-  } 
-  imagecols {
-    removeItems = 5,7,8
-  }
-  imageorient {
-    removeItems = 1,2,9,10
-  }
-
-  ### Add images layout 
-
-  layout.types {
-    image {
-      removeItems = 3
-      altLabels {
-        0 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.default
-        1 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.roundcorner
-        2 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.circle
-      }
-    }
-    textpic {
-      removeItems = 3
-      altLabels {
-        0 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.default
-        1 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.roundcorner
-        2 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:imagelayout.circle
-      }
-    }
-    ### Add label to upload layouts
-    uploads{
-      removeItems = 3
-      altLabels {
-        0 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:uploadlayout.default
-        1 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:uploadlayout.icon
-        2 = LLL:EXT:lef_responsive_images/Resources/Private/Language/locallang.xlf:uploadlayout.preview    
-      }
-    }
-  }
 }
+      

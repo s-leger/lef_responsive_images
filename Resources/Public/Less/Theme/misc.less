@@ -1,0 +1,189 @@
+//
+// Vertical Alignment
+// --------------------------------------------------
+.indent {
+    @media (min-width: @screen-sm) {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    @media (min-width: @screen-md) {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    @media (min-width: @screen-lg) {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+}
+.indent-left {
+    margin-left: 33%;
+}
+.indent-right {
+    margin-right: 33%;
+}
+
+//
+// Media thumbs
+//
+.media-left{
+    padding-left:0;
+    > img,
+    > a > img {
+        background-color: white;
+    }
+}
+
+
+//
+// Scrolltop
+//
+.scroll-top {
+    overflow: hidden;
+    .transition(all 0.3s ease-in-out);
+    z-index: @zindex-navbar;
+    background-color: @gray;
+    color: #fff;
+    bottom: @grid-gutter-width;
+    right: @grid-gutter-width;
+    position: fixed;
+    opacity: 0;
+    width: 3em;
+    height: 3em;
+    &:active,
+    &:focus,
+    &:hover {
+        color: #ffffff;
+        background-color: @brand-primary;
+    }
+    .scroll-top-icon {
+        &:extend(.css-arrow all);
+    }
+    &.scroll-top-visible {
+        opacity: 1;
+    }
+}
+
+
+.css-arrow {
+    .rotate(45deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    &:before {
+        content: '';
+        position: absolute;
+        height: 30%;
+        width: 30%;
+        border-top: 1px solid;
+        border-left: 1px solid;
+        top: 55%;
+        left: 55%;
+        .translate(-50%, -50%);
+    }
+}
+
+
+
+//
+// Vertical Alignment
+// --------------------------------------------------
+.valign {
+    display: table;
+    table-layout: fixed;
+// fix for safari
+    display: -webkit-inline-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+// size vertically to container height
+    position: absolute;
+    top: 0;
+    bottom:0;
+    border:0;
+// fix for ie
+    height:100%;
+// get the rid of margins / padding on parent
+    left:0;
+    width: 100%;
+    > .vcontainer {
+        display: table-cell;
+    }
+
+}
+
+
+//
+// Jumbotron
+// --------------------------------------------------
+.jumbotron {
+    a,
+    a:hover,
+    a:active,
+    a:focus {
+        color: inherit;
+        text-decoration: underline;
+    }
+}
+
+
+//
+// Panel
+// --------------------------------------------------
+.panel-body {
+    *:last-child {
+        margin-bottom: 0;
+    }
+}
+
+
+//
+// Lazyload Images
+// --------------------------------------------------
+.lazyload {
+    opacity:0;
+//    transform: scale(3);
+    transition: all 3s;
+}
+.loaded {
+     opacity:1;
+//     transform: scale(1);
+}
+   
+//
+// Buttons from RTE
+// --------------------------------------------------
+.btn-default {
+    .btn();
+    .btn-default();
+}
+.btn-primary {
+    .btn();
+    .btn-primary();
+}
+.btn-success {
+    .btn();
+    .btn-success();
+}
+.btn-warning {
+    .btn();
+    .btn-warning();
+}
+.btn-danger {
+    .btn();
+    .btn-danger();
+}
+
+
+//
+// Misc
+// --------------------------------------------------
+.panel-group {
+    margin-bottom: 20px;
+}
+.caret {
+    margin-left: 5px;
+}
+.caption {
+    color: @gray-light;
+}

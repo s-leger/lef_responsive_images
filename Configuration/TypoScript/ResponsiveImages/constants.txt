@@ -1,0 +1,115 @@
+############################
+### CUSTOM SUBCATEGORIES ###
+############################
+# #customcategory=responsive images=Responsive Images
+# #customcategory=javascript and css=Javascript and Css
+# #customcategory=grid system=Responsive Grid setup
+# customsubcategory=5500=Grid
+# customsubcategory=5600=Breakpoints media query (screen width)
+# customsubcategory=5610=Container
+# customsubcategory=5620=Container behaviour
+# customsubcategory=5640=Retina settigs
+# customsubcategory=5650=Images
+# customsubcategory=5660=Layout
+# customsubcategory=5670=Placeholder
+# customsubcategory=5700=Javascript
+# customsubcategory=5710=Css
+# customsubcategory=5750=Formats
+
+plugin.tx_lefglobalsettings.settings {
+
+    grid {
+
+        screen{
+            # cat=grid system/5600/110; type=int+; label=1 Screen : Minimum width of the screen extra small
+            xs = 480
+            # cat=grid system/5600/120; type=int+; label=2 Screen : Minimum width of the screen small
+            sm = 768
+            # cat=grid system/5600/130; type=int+; label=3 Screen : Minimum width of the screen medium
+            md = 992
+            # cat=grid system/5600/140; type=int+; label=4 Screen : Minimum width of the screen large
+            lg = 1200
+            # cat=grid system/5600/140; type=int+; label=5 Screen : Minimum width of the screen extra large
+            xl = 1920
+         }
+
+        container{
+            # cat=grid system/5610/110; type=int+; label=0 Container : Maximum available width for layout under extra small
+            xxs = 440
+            # cat=grid system/5610/110; type=int+; label=1 Container : Maximum available width for layout extra small
+            xs = 728
+            # cat=grid system/5610/120; type=int+; label=2 Container : Maximum available width for layout small
+            sm = 720
+            # cat=grid system/5610/130; type=int+; label=3 Container : Maximum available width for layout medium
+            md = 940
+            # cat=grid system/5610/140; type=int+; label=4 Container : Maximum available width for layout large
+            lg = 1140
+        }
+
+        # cat=grid system/5500/100; type=options[Extra small=4, Small=3, Medium=2, Large=1]; label=Fluid breakpoint : Breakpoint transition between fixed and fluid layout
+        breakpoint = 3
+
+        # cat=grid system/5500/200; type=int+; label=Number of columns : Maximum number of columns
+        columns = 12
+
+        # cat=grid system/5500/210; type=int+; label=Gutter width:Width of the gutter
+        gutter = 40
+    }
+
+    images {
+        # cat=responsive images/5650/100; type=options[Default (use global settings)=,Ultra Low 50=50,Ultra Low 60=60,Low 70=70,Medium 75=75,Medium 80=80,Medium 85=85,High 90=90,Ultra High 95=95, Uncompressed (100)=100]; label=Image compression:Default image compression
+        quality = 80
+
+        # cat=responsive images/5650/110; type=options[Img with srcset=3, Picture=2, Img with data attributes (compatible mode)=1]; label=Default tag type : Tag type used to render images
+        tag = 1
+
+        # cat=responsive images/5650/120; type=options[Enable lazyload=1, Disable lazyload=0]; label=Loading method : Loading method for images.
+        lazyload = 1
+
+        # cat=responsive images/5650/130; type=int+; label=Max width : Maximum size of images
+        maxwidth = 1920
+
+        # cat=responsive images/5650/140; type=int+; label=Max height : Maximum size of images
+        maxheight = 1920
+
+        # cat=responsive images/5650/150; type=boolean; label=Absolute url : Force absolute url for images (for use with ajax loaded content)
+        absoluteUrl = 1
+
+        # cat=responsive images/5660/130; type=boolean; label=Prevent Relayout : Prevent relayout of page when image load by providing image sizes via css
+        preventrelayout = 1
+
+        # cat=responsive images/5670/140; type=options[Small thumb=2, Inline transparent image=1, loader.gif=0]; label=Placeholder : Placeholder for images
+        placeholder.mode = 1
+
+        # cat=responsive images/5670/150; type=int+; label=Placeholder Size : Size of images placeholder
+        placeholder.size = 50
+
+       
+       # formats {
+       # # cat=responsive images/5750/100; type=boolean; label=Format webp : Enable .webp image generation (as long as your server is able to do so)        
+       # webp = 0
+       # # cat=responsive images/5750/110; type=boolean; label=Format webm : Enable .jxr (jpeg xr) image generation (as long as your server is able to do so)        
+       # jxr = 0
+       # }
+        borderspace {
+
+            # cat=responsive images/5660/210; type=int+; label=1 Border space xs: Space between images extra small (css must be adjusted according)
+            xs = 20
+            # cat=responsive images/5660/220; type=int+; label=2 Border space sm: Space between images small (css must be adjusted according)
+            sm = 30
+            # cat=responsive images/5660/230; type=int+; label=3 Border space md: Space between images medium (css must be adjusted according)
+            md = 40
+            # cat=responsive images/5660/240; type=int+; label=4 Border space lg: Space between images large (css must be adjusted according)
+            lg = 40
+
+        }
+
+        # cat=responsive images/5660/260; type=float; label=Layout columns height ratio : Use container width * this ratio as vertical size for multiple images in columns layout
+        layout.columnsheightratio = 56.25
+
+    }
+    css {
+        # cat=responsive images/5710/100; type=boolean; label=Css in body : Render css in body instead of head (for use with ajax loaded content)
+        moveCssToBody = 0
+    }
+}

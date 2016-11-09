@@ -1,1 +1,43 @@
-<INCLUDE_TYPOSCRIPT: source="DIR:EXT:lef_responsive_images/Configuration/TypoScript/Library" extensions="setupts">
+lib.tx_lefglobalsettings.settings {
+    images  {
+       tag = {$plugin.tx_lefglobalsettings.settings.images.tag}
+       lazyload = {$plugin.tx_lefglobalsettings.settings.images.lazyload}
+       preventrelayout = {$plugin.tx_lefglobalsettings.settings.images.preventrelayout}
+       placeholder = {$plugin.tx_lefglobalsettings.settings.images.placeholder.mode}
+       absoluteUrl = {$plugin.tx_lefglobalsettings.settings.images.absoluteUrl}
+       breakpoint = {$plugin.tx_lefglobalsettings.settings.grid.breakpoint} 
+       formats.webp = {$plugin.tx_lefglobalsettings.settings.images.format.webp}
+       formats.jxr  = {$plugin.tx_lefglobalsettings.settings.images.format.jxr}
+   } 
+}
+
+######################################################
+# Global settings for responsive images
+######################################################
+page{
+
+    10 {
+
+       templateRootPaths.5 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_pages.templateRootPath}
+       partialRootPaths.5 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_pages.partialRootPath}
+       layoutRootPaths.5 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_pages.layoutRootPath}
+    }
+
+    includeCSS {
+        # bootstrap will be included in the themes.less file
+        # for standalone usage just uncomment the following line
+        # bootstrap = EXT:lef_responsive_images/Resources/Public/Less/Bootstrap/bootstrap.less
+        theme = EXT:lef_responsive_images/Resources/Public/Less/Theme/theme.less
+    #    extendgrid = EXT:lef_responsive_images/Resources/Public/Less/ExtendGrid/theme.less
+    }
+
+    includeJSFooterlibs {
+        responsiveimages = EXT:lef_responsive_images/Resources/Public/JavaScript/jquery.responsiveimages.min.js
+    }
+}
+
+
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:lef_responsive_images/Configuration/TypoScript/ContentElements" extensions="txt">
+<INCLUDE_TYPOSCRIPT: source="DIR:EXT:lef_responsive_images/Configuration/TypoScript/Helper" extensions="txt">
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:lef_responsive_images/Configuration/TypoScript/ResponsiveImages/setup.txt">
+

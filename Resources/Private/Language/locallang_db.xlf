@@ -12,6 +12,24 @@
       <trans-unit id="tt_content.loadingmethod_options.I.1"> 
          <source>Preload</source>
       </trans-unit>
+      <trans-unit id="tt_content.imagesmode_options"> 
+         <source>Image mode</source>
+      </trans-unit>
+       <trans-unit id="tt_content.imagesmode_options.I.0"> 
+         <source>Default</source>
+      </trans-unit>
+      <trans-unit id="tt_content.imagesmode_options.I.1"> 
+         <source>Art direction (require a multiple of 5 images)</source>
+      </trans-unit>
+      <trans-unit id="tt_content.imagesmode_options.I.2"> 
+         <source>Css Background</source>
+      </trans-unit>
+      <trans-unit id="tt_content.imagesmode_options.I.3"> 
+         <source>Css Background with art direction (require a multiple of 5 images)</source>
+      </trans-unit>
+      <trans-unit id="tt_content.imagesmode_options.I.4"> 
+         <source>Title as lightbox link</source>
+      </trans-unit>
     </body>
   </file>
 </xliff>

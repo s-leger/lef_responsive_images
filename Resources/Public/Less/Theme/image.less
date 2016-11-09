@@ -1,0 +1,31 @@
+//
+// Images
+// --------------------------------------------------
+.image {
+    display: block;
+    margin-bottom: @line-height-computed;
+    line-height: @line-height-base;
+    .embed-responsive {
+         width: 100%;
+    }
+    picture,
+    img {
+        image-rendering: pixelated;
+        display: block;
+        max-width: 100%;
+     // fix for ie
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+    .caption {
+        &.global-caption{
+            text-align: center;
+        }
+        padding: @thumbnail-caption-padding;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+    }
+}
+

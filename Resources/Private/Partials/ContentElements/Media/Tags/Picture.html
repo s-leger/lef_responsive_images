@@ -1,0 +1,22 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+
+<f:comment>Image tag Picture</f:comment>
+
+<div id="{data.selector}" {f:if(condition: '{settings.images.preventrelayout}', then: 'class="embed-responsive"')}>
+    <picture>
+      <source media="{lef:mediaQuery( min: 'lg', short: '1')}" srcset="{lef:uri.image(quality: data.quality, image: srcset.lg.src, width: '{srcset.lg.width}{srcset.lg.cropw}', height: '{srcset.lg.height}{srcset.lg.croph}', absolute: '{settings.images.absoluteUrl}')}" />
+      <source media="{lef:mediaQuery( min: 'md', short: '1')}" srcset="{lef:uri.image(quality: data.quality, image: srcset.md.src, width: '{srcset.md.width}{srcset.md.cropw}', height: '{srcset.md.height}{srcset.md.croph}', absolute: '{settings.images.absoluteUrl}')}" />
+      <source media="{lef:mediaQuery( min: 'sm', short: '1')}" srcset="{lef:uri.image(quality: data.quality, image: srcset.sm.src, width: '{srcset.sm.width}{srcset.sm.cropw}', height: '{srcset.sm.height}{srcset.sm.croph}', absolute: '{settings.images.absoluteUrl}')}" />
+      <source media="{lef:mediaQuery( min: 'xs', short: '1')}" srcset="{lef:uri.image(quality: data.quality, image: srcset.xs.src, width: '{srcset.xs.width}{srcset.xs.cropw}', height: '{srcset.xs.height}{srcset.xs.croph}', absolute: '{settings.images.absoluteUrl}')}" />
+      <source srcset="{lef:uri.image(quality: data.quality, image: srcset.xxs.src, width: '{srcset.xxs.width}{srcset.xxs.cropw}', height: '{srcset.xxs.height}{srcset.xxs.croph}', absolute: '{settings.images.absoluteUrl}')}" />    
+      <img src="{lef:uri.image(quality: data.quality, image: srcset.lg.src, width: '{srcset.lg.width}{srcset.lg.cropw}', height: '{srcset.lg.height}{srcset.lg.croph}', absolute: '{settings.images.absoluteUrl}')}"
+        title="{data.title}"
+        alt="{data.alternative}"
+        />
+    </picture>
+</div>
+
+
+
+

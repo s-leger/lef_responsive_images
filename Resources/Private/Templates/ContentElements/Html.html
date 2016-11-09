@@ -1,0 +1,19 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+<f:layout name="Clean"/>
+<f:section name="Main">
+  <f:switch expression="{data.layout}">
+    <f:case value="100">
+      <lef:css inline="{settings.moveCssToBody}">
+        <f:format.raw>{data.bodytext}</f:format.raw>
+      </lef:css>
+    </f:case>
+    <f:case value="110">
+      <lef:jsFooterInline>
+        <f:format.raw>{data.bodytext}</f:format.raw>
+      </lef:jsFooterInline>
+    </f:case>
+    <f:case value="0">
+      <f:format.raw>{data.bodytext}</f:format.raw>
+    </f:case>
+  </f:switch>
+</f:section>

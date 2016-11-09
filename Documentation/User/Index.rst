@@ -21,14 +21,6 @@ Settings
 --------
 
 
-Images layout
-^^^^^^^^^^^^^
-
-In the image/texpic content, Content Element Layout section of Appearance Tab there is a dropdown list "layout" providing two new options.
-
-- **Circle** make the image round (by css)
-- **Round corners** add round corners to pictures (depends on border radius settings in bootstrap style)
-
 
 Loading method
 ^^^^^^^^^^^^^^

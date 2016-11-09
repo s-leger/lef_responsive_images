@@ -1,0 +1,52 @@
+//
+// Footer Section
+// --------------------------------------------------
+.footer-section {
+    color: @footer-color;
+    background: @footer-bg;
+    a {
+        color: @footer-link-color;
+        &:hover,
+        &:focus {
+          color: @footer-link-hover-color;
+          text-decoration: @footer-link-hover-decoration;
+        }
+    }
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4,
+    h5, .h5 {
+        color: inherit;
+    }
+}
+
+
+
+//
+// Language Menu
+// --------------------------------------------------
+.footer-section-meta {
+    background: darken(@footer-bg, 3%);
+    a {
+        color: inherit;
+        &:hover,
+        &:focus {
+            color: @footer-link-hover-color;
+        }
+    }
+    .language-menu {
+        list-style: none;
+        padding-left: 0;
+        @media (min-width: @screen-sm-min) {
+            .list-inline();
+        }
+        .active a {
+            font-weight: bold;
+            color: @footer-link-color;
+        }
+    }
+    @media (min-width: @screen-md) {
+        text-align: center;
+    }
+}

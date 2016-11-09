@@ -1,0 +1,39 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+
+<f:comment>Img tag type</f:comment>
+
+<bk2k:var name="tag" value="{lef:simpleMath( operator: '&', a:'{data.image_rendering}', b:'15')}" />
+<f:switch expression="{f:if(condition: '{tag}', then:'{tag}', else:'{settings.images.tag}')}">
+  
+  <f:case value="1">
+    <f:render partial="Media/Tags/Img" arguments="{srcset: file.srcset, data: file.data, settings: settings}" />
+  </f:case>
+  
+  <f:case value="2">
+    <f:if condition="{settings.lazyload}">
+      <f:then>
+        <f:render partial="Media/Tags/PictureLazyload" arguments="{srcset: file.srcset, data: file.data, settings: settings}" />
+      </f:then>
+      <f:else>
+        <f:render partial="Media/Tags/Picture" arguments="{srcset: file.srcset, data: file.data, settings: settings}" />
+      </f:else>
+    </f:if>
+  </f:case>
+  
+  <f:case value="3">
+    <f:if condition="{settings.lazyload}">
+      <f:then>
+        <f:render partial="Media/Tags/ImgSrcsetLazyload" arguments="{srcset: file.srcset, data: file.data, settings: settings}" />
+      </f:then>
+      <f:else>
+        <f:render partial="Media/Tags/ImgSrcset" arguments="{srcset: file.srcset, data: file.data, settings: settings}" />
+      </f:else>
+    </f:if>
+  </f:case>
+  
+  <f:case value="4">
+    <f:render partial="Media/Tags/Css" arguments="{srcset: file.srcset, data: file.data, settings: settings}" />
+  </f:case>
+
+</f:switch>

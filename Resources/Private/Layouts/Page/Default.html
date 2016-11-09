@@ -1,0 +1,19 @@
+<div class="body-bg{f:if(condition:settings.navigation.type, then:' body-bg-{settings.navigation.type}')}">
+
+    <f:link.page class="sr-only sr-only-focusable" section="content">
+        {f:translate(key: 'skiptomaincontent', extensionName: 'lef_responsive_images')}
+    </f:link.page>
+    <f:render partial="Navigation/Main" arguments="{_all}"/>
+    <f:render partial="Navigation/Breadcrumb" arguments="{_all}"/>
+
+    <div id="content" class="main-section">
+        <!--TYPO3SEARCH_begin-->
+        <section id="p{data.uid}" class="{pageClass}">
+            <f:render section="Main"/>
+        </section>
+        <!--TYPO3SEARCH_end-->
+    </div>
+
+    <f:render partial="Structure/Footer" arguments="{_all}"/>
+
+</div>

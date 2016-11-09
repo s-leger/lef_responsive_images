@@ -2,118 +2,110 @@
 ### CUSTOM SUBCATEGORIES ###
 ############################
 # #customcategory=responsive images=Responsive Images
+# #customcategory=javascript and css=Javascript and Css
 # #customcategory=grid system=Responsive Grid setup
-# customsubcategory=600=Breakpoints media query (screen width)
-# customsubcategory=610=Container
-# customsubcategory=620=Container behaviour
-# customsubcategory=630=Advanced
-# customsubcategory=640=Retina settigs
-# customsubcategory=650=Images
-# customsubcategory=660=Frames
+# customsubcategory=5600=Breakpoints media query (screen width)
+# customsubcategory=5610=Container
+# customsubcategory=5620=Container behaviour
+# customsubcategory=5630=Advanced
+# customsubcategory=5640=Retina settigs
+# customsubcategory=5650=Images
+# customsubcategory=5660=Frames
+# customsubcategory=5700=Javascript
+# customsubcategory=5710=Css
+# customsubcategory=5720=Templates content elements
+# customsubcategory=5730=Templates pages
 
-plugin.lef_responsive_images {
+plugin.tx_lefglobalsettings {
     
-    screen{
-        # cat=grid system/600/110; type=int+; label=1 Screen : Minimum width of the screen extra small
-        xs = 480
-        # cat=grid system/600/120; type=int+; label=2 Screen : Minimum width of the screen small
-        sm = 768
-        # cat=grid system/600/130; type=int+; label=3 Screen : Minimum width of the screen medium
-        md = 992
-        # cat=grid system/600/140; type=int+; label=4 Screen : Minimum width of the screen large
-        lg = 1200
-        # cat=grid system/600/150; type=int+; label=5 Screen max : Width of the container large
-        xl= 1920
+    menu{
+       pages_thumbs_random {
+          maxitems = 3
+          title.crop = 100
+          abstract.crop = 250
+       }
+       content_thumbs {
+          maxitems = 10
+          header.crop = 100
+          bodytext.crop = 250
+       }
+       content_thumbs_random{
+          pidInList = 104,108,39,60
+          maxitems = 10
+          header.crop = 100
+          bodytext.crop = 250
+       }
+    }
 
-    }
-    
-    container{    
-        # cat=grid system/610/110; type=int+; label=1 Container : Width of the container extra small
-        xs = 450
-        # cat=grid system/610/120; type=int+; label=2 Container : Width of the container small
-        sm = 720
-        # cat=grid system/610/130; type=int+; label=3 Container : Width of the container medium
-        md = 940
-        # cat=grid system/610/140; type=int+; label=4 Container : Width of the container large
-        lg = 1140
-        # cat=grid system/610/150; type=int+; label=5 Container : Width of the container large
-        xl= 1920
 
+    fluidtemplate {
+        responsive_images_contentelements{
+            # cat=responsive images/5720/100; type=string; label=Template Root Path: Path to templates
+            templateRootPaths = EXT:lef_responsive_images/Resources/Private/Templates/ContentElements/
+            # cat=responsive images/5720/110; type=string; label=Partial Root Path: Path to partials
+            partialRootPaths = EXT:lef_responsive_images/Resources/Private/Partials/ContentElements/
+            # cat=responsive images/5720/120; type=string; label=Layout Root Path: Path to layouts
+            layoutRootPaths = EXT:lef_responsive_images/Resources/Private/Layouts/ContentElements/
+        }
+        responsive_images_pages{
+            # cat=responsive images/5730/100; type=string; label=Layout Root Path: Path to layouts
+            layoutRootPath = EXT:lef_responsive_images/Resources/Private/Layouts/Page/
+            # cat=responsive images/5730/110; type=string; label=Partial Root Path: Path to partials
+            partialRootPath = EXT:lef_responsive_images/Resources/Private/Partials/Page/
+            # cat=responsive images/5730/120; type=string; label=Template Root Path: Path to templates
+            templateRootPath = EXT:lef_responsive_images/Resources/Private/Templates/Page/
+        }
     }
     
-    fluid{    
-        # cat=grid system/620/210; type=boolean; label=1 Fluid : Container behaviour fluid extra small
-        xs = 1
-        # cat=grid system/620/220; type=boolean; label=2 Fluid : Container behaviour fluid small 
-        sm = 0
-        # cat=grid system/620/230; type=boolean; label=3 Fluid : Container behaviour fluid medium
-        md = 0
-        # cat=grid system/620/240; type=boolean; label=4 Fluid : Container behaviour fluid large
-        lg = 0
-    }  
-    
-    enable{
-        # cat=responsive images/650/100; type=boolean; label=Adapt number of columns for multiple images according breakpoints (require bootstrap_package extension)
-        imageColumnsAdaptive = 1
-    }
-    
-    # cat=grid system/610/200; type=int+; label=Number of columns : Maximum number of columns
-    columns = 12
-    # cat=grid system/610/210; type=int+; label=Gutter width:Width of the gutter
-    gutter = 30
-    
-    retina {
-        # cat=responsive images/640/100; type=boolean; label=Enable retina:Enable retina images in source sets
-        enable = 0
-        # cat=responsive images/640/110; type=int+; label=Retina Pixel density: Pixel density for retina images
-        pixeldensity = 2
-        # cat=responsive images/640/120; type=string; label=Retina density media query: Media query tag for pixel density
-        mediaquery = -webkit-min-device-pixel-ratio
-    }  
-    
-    images{
-        # cat=responsive images/650/110; type=options[50%=2,33%=3,25%=4]; label=Image in text width:Divide the available width by this  
-        divideImageAboveTextWidth = 2
-        # cat=responsive images/650/120; type=boolean; label=Image user defined width:Conserve proportion beteween text and image across breakpoint.  
-        userWidthProportional = 1
-    }
-    
-    padding{
-        # cat=grid system/660/135; type=int+; label=Padding jumbotron:Width of jumbotron padding (according bootstrap) 
-        jumbotron = 60
-        # cat=grid system/660/136; type=int+; label=Padding well:Width of the well padding (according bootstrap)
-        well      = 40
-    }
-    
-    # cat=grid system/630/160; type=string; label=Path to javascript: Path to Javascript plugins
-    js = EXT:lef_responsive_images/Resources/Public/JavaScript/
-    # cat=grid system/630/161; type=string; label=Path to Css: Path to Css files
-    css= EXT:lef_responsive_images/Resources/Public/Css/
 }
 
-
-page {
-    # cat=grid system/650/121; type=string; label=Path to favicon: Path to favicon image
-    shortcutIcon = EXT:lef_responsive_images/Resources/Public/Icons/favicon.ico
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:lef_responsive_images/Configuration/TypoScript/ResponsiveImages/constants.txt">
+##########################################
+### BOOTSTRAP PACKAGE CONTENT ELEMENTS ###
+##########################################
+plugin.bootstrap_package_contentelements {
+    view {
+        # cat=bootstrap package: advanced/140/layoutRootPath; type=string; label=Layout Root Path: Path to layouts
+        layoutRootPath = EXT:bootstrap_package/Resources/Private/Layouts/ContentElements/
+        # cat=bootstrap package: advanced/140/partialRootPath; type=string; label=Partial Root Path: Path to partials
+        partialRootPath = EXT:bootstrap_package/Resources/Private/Partials/ContentElements/
+        # cat=bootstrap package: advanced/140/templateRootPath; type=string; label=Template Root Path: Path to templates
+        templateRootPath = EXT:bootstrap_package/Resources/Private/Templates/ContentElements/
+    }
+    lightbox {
+        # cat=bootstrap package: advanced/144/100; type=string; label=Lightbox Css Class
+        cssClass = lightbox
+        # cat=bootstrap package: advanced/144/101; type=string; label=Lightbox Group Prefix
+        prefix = lightbox-group
+    }
+    accordion {
+        media {
+            # cat=bootstrap package: advanced/141/102; type=string; label=Aside Media Height
+            height = 300
+            # cat=bootstrap package: advanced/141/103; type=string; label=Aside Media Width
+            width = 400
+        }
+    }
+    menu_thumbnails {
+        media {
+            # cat=bootstrap package: advanced/143/102; type=string; label=Thumbnail Menu Media ratio height/width in percent
+            ratio = 56.25
+        }
+        title {
+            # cat=bootstrap package: advanced/143/104; type=string; label=Thumbnail Menu Crop Title
+            crop = 100
+        }
+        abstract {
+            # cat=bootstrap package: advanced/143/105; type=string; label=Thumbnail Menu Crop Abstract
+            crop = 250
+        }
+    }
+    uploads {
+        preview {
+            # cat=bootstrap package: advanced/145/102; type=string; label=Uploads Preview ratio height/width in percent
+            ratio = 100
+            # cat=bootstrap package: advanced/145/101; type=string; label=Uploads Preview Width (number of columns)
+            columns = 2
+        }
+    }
 }
-
-styles.content.imgtext {
-    # cat=responsive images/650/150; type=options[Default img-tag=default, img-tag with alternate sources as srcset-attribute=srcset, picture-tag with source-child-tags=picture, img-tag with alternate sources as data-attributes=bootstrappackage]; label= Rendering-type for responsive images.
-    layoutKey = bootstrappackage
-}
-
-# override layouts and partials for page
-page.fluidtemplate.templateRootPath  = EXT:lef_responsive_images/Resources/Private/Templates/Page/
-page.fluidtemplate.partialRootPath  = EXT:lef_responsive_images/Resources/Private/Partials/Page/
-
-#page.fluidtemplate.layoutRootPath   = EXT:lef_responsive_images/Resources/Private/Layouts/Page/
-
-# defaults for css styled content
-styles.content.imgtext{
-    # match bootstrap css border 
-    borderThick = 1
-    borderSpace = 4
-    colSpace = 30
-    maxWInText = 0
-    maxW = 0
-    }    

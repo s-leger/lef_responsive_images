@@ -1,0 +1,10 @@
+<f:if condition="{records -> f:count()} > 1">
+    <a data-slide="prev" role="button" class="left carousel-control" href="#carousel-{data.uid}">
+        <span class="carousel-control-icon"></span>
+        <span class="sr-only">{f:translate(key: 'previous', extensionName: 'lef_responsive_images')}</span>
+    </a>
+    <a data-slide="next" role="button" class="right carousel-control" href="#carousel-{data.uid}">
+        <span class="carousel-control-icon"></span>
+        <span class="sr-only">{f:translate(key: 'next', extensionName: 'lef_responsive_images')}</span>
+    </a>
+</f:if>

@@ -1,0 +1,71 @@
+<f:comment>
+    FILETYPE_UNKNOWN = 0;
+    FILETYPE_TEXT = 1;
+    FILETYPE_IMAGE = 2;
+    FILETYPE_AUDIO = 3;
+    FILETYPE_VIDEO = 4;
+    FILETYPE_APPLICATION = 5;
+</f:comment>
+
+<f:comment>Media type</f:comment>
+
+<f:switch expression="{file.type}">
+
+    <f:case value="0">
+        <f:comment>Unknown file type</f:comment>
+        <f:render partial="Media/Types/Fallback" arguments="{file: file}" />
+    </f:case>
+  
+    <f:case value="1">
+        <f:comment>Text file</f:comment>
+        <f:render partial="Media/Types/Fallback" arguments="{file: file}" />
+    </f:case>  
+  
+    <f:case value="2">
+        
+        <f:switch expression="{data.image_rendering}">
+            
+            <f:case value="0">
+                <f:render partial="Media/Types/Image" arguments="{file: file, data: data, settings: settings}" />
+            </f:case>
+          
+            <f:case value="4">
+                <f:comment>rendering css</f:comment>
+                <f:render partial="Media/Tags/Type" arguments="{file: file, data: data, settings: settings}" />
+            </f:case>
+            
+            <f:case value="64">
+                <f:comment>rendering method without any link for thumbs menuItems / media list</f:comment>
+                <f:render partial="Media/Tags/Type" arguments="{file: file, data: data, settings: settings}" />
+            </f:case>
+  
+        </f:switch>
+        
+    </f:case>
+    
+    <f:case value="3">
+        <f:comment>Audio files</f:comment>
+        <f:render partial="Media/Types/Fallback" arguments="{file: file}" />
+    </f:case>
+    
+    <f:case value="4">
+        <f:render partial="Media/Types/Video" arguments="{file: file, settings: settings}" />
+    </f:case>
+    
+    <f:case value="5">
+       <f:comment>Application files eg:pdf</f:comment>
+        <f:switch expression="{data.image_rendering}">
+          
+            <f:case value="0">
+                <f:render partial="Media/Types/Image" arguments="{file: file, data: data, settings: settings}" />
+            </f:case>
+          
+            <f:case value="64">
+                <f:comment>rendering method without any link for thumbs menuItems / media list</f:comment>
+                <f:render partial="Media/Tags/Type" arguments="{file: file, data: data, settings: settings}" />
+            </f:case>
+  
+        </f:switch>
+    </f:case>
+    
+</f:switch>

@@ -1,0 +1,19 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+<f:layout name="Default"/>
+<f:section name="Header"></f:section>
+<f:section name="Main">
+
+    <div class="row">
+        <div class="col-sm-push-6 col-sm-6">
+            <lef:imageSize sm="6"> 
+              <f:render partial="Media/Gallery" arguments="{_all}" />
+            </lef:imageSize> 
+        </div>
+        <div class="col-sm-pull-6 col-sm-6">
+            <f:render partial="Header/All" arguments="{_all}" />
+            <f:format.html>{data.bodytext}</f:format.html>
+        </div>
+    </div>
+
+</f:section>

@@ -12,10 +12,13 @@
 
 $EM_CONF[$_EXTKEY] = array(
   'title' => 'Bootstrap3 responsive images',
-  'description' => 'Extends the bootstrap_package
-auto generate image at the right size
-include support for retina',
-  'category' => 'fe',
+  'description' => 'Extends the bootstrap_package 
+auto generate images at the right size
+add support for 1 to 10 columns for images
+add css background and art direction images
+extends carousel to use responsive background
+  ',
+  'category' => 'template',
   'author' => 'Stephen Leger',
   'author_email' => 'stephen@3dservices.ch',
   'state' => 'beta',
@@ -23,14 +26,21 @@ include support for retina',
   'uploadfolder' => '0',
   'createDirs' => '',
   'clearCacheOnLoad' => 0,
-  'version' => '0.0.4',
+  'version' => '0.0.8',
+  'autoload' => 
+  array (
+    'psr-4' => 
+    array (
+      'LEF\\LefResponsiveImages\\' => 'Classes',
+    ),
+  ),
   'constraints' => array(
     'depends' => array(
-      'typo3' => '6.2.0-7.1.99',
-      'bootstrap_package' => '6.2.12-7.1.99',
+      'typo3' => '7.6.0-8.6.99',
+      'bootstrap_package' => '7.6.0-8.6.99',
     ),
     'conflicts' => array(
-      'themes' => '2.3.0',
+      'themes' => '*',
     ),
     'suggests' => array(
     ),

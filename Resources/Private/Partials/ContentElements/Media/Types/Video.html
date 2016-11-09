@@ -1,0 +1,11 @@
+<f:comment>Media type video</f:comment>
+
+
+    <div class="embed-responsive embed-responsive-16by9">
+        <f:render partial="Media/Tags/Video" arguments="{file: file.srcset.lg, data: file.data}" />
+    </div>
+    <f:if condition="{file.data.description}">
+        <figcaption class="caption">
+            {file.data.description}
+        </figcaption>
+    </f:if>

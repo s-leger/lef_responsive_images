@@ -1,0 +1,83 @@
+###############################
+## Banner from page media field
+###############################
+#
+#   <div role="banner" class="banner" id="banner-{data.uid}">
+#      <f:cObject typoscriptObjectPath="lib.responsiveImages.media" data="{uid: '{data.uid}', tx_image_rendering: '2', imgcolumns: '1', tx_image_cssselector:'#banner-{data.uid}', fluid: '1'}" />
+#  </div>
+#
+lib.responsiveImages.media = COA
+lib.responsiveImages.media {
+
+    10 = LOAD_REGISTER
+    20 = USER
+    20 {
+       userFunc = LEF\LefResponsiveImages\UserFuncs\TemplateWidthUserFunc->storeToRegister
+       xs = TEXT
+       xs.field = xs
+       sm < .xs
+       sm.filed = sm
+       md < .xs
+       md.field = md
+       lg < .xs
+       lg.field = lg
+       fluid < .xs
+       fluid.field = fluid
+    }
+    
+    30 = FLUIDTEMPLATE
+    30 {
+    ################
+    ### TEMPLATE ###
+    ################
+    templateName = Image
+    templateRootPaths {
+        0 = EXT:lef_responsive_images/Resources/Private/Templates/ContentElements/
+        10 = {$plugin.lef_responsive_images_contentelements.view.templateRootPath}
+    }
+    partialRootPaths {
+        0 = EXT:lef_responsive_images/Resources/Private/Partials/ContentElements/
+        10 = {$plugin.lef_responsive_images_contentelements.view.partialRootPath}
+    }
+    layoutRootPaths {
+        0 = EXT:lef_responsive_images/Resources/Private/Layouts/ContentElements/
+        10 = {$plugin.lef_responsive_images_contentelements.view.layoutRootPath}
+    }
+
+
+    ################
+    ### SETTINGS ###
+    ################
+    settings {
+        media {
+            preload = {$config.preloadImages}
+        }
+        lightbox {
+            cssClass = {$plugin.lef_responsive_images_contentelements.lightbox.cssClass}
+            prefix = {$plugin.lef_responsive_images_contentelements.lightbox.prefix}
+        }
+        moveCssToBody = {$plugin.lef_responsive_images_contentelements.moveCssToBody}
+        disable_wrap = 1
+    }
+    
+    ##########################
+    ### DATA PREPROCESSING ###
+    ##########################
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+        10 {
+            references{
+               fieldName = media
+               uid.field = uid 
+               table = pages
+           }
+        }
+    }
+    }
+    40 = RESTORE_REGISTER
+
+}
+
+
+
+

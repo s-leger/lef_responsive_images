@@ -1,0 +1,7 @@
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+{namespace lef = BK2K\BootstrapPackage\ViewHelpers}
+<f:comment>Media type LightboxLink</f:comment>
+
+<a href="{lef:uri.image(quality: data.quality, image: file, maxHeight: '1200', maxWidth: '1200')}" title="{file.title}" class="{settings.lightbox.cssClass}" data-lightbox-width="{bk2k:lastImageInfo(property: 'width')}" data-lightbox-height="{bk2k:lastImageInfo(property: 'height')}" rel="{settings.lightbox.prefix}-{data.uid}">
+  {file.description}
+</a>

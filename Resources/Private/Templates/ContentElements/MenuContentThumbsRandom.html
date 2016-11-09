@@ -1,0 +1,85 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+<f:layout name="Default"/>
+<f:section name="Header">
+  
+  <f:render partial="Header/All" arguments="{_all}" />
+  
+</f:section>
+<f:section name="Main">
+  <f:if condition="{menu}">
+    <div class="row" data-equalheight="container">
+      <f:for each="{menu}" as="content">
+        
+        <f:if condition="{content.files->f:count()} < 1">
+          
+          <div class="col-xs-6 col-sm-4">
+              <f:link.page pageUid="{content.data.pid}" section="{content.data.uid}" title="{content.data.header}" class="thumbnail" data="{equalheight:'item', toggle: 'tooltip'}">
+                <div class="thumbnail-image">
+               
+                </div>  
+                <div class="thumbnail-caption">
+                  <h1><f:format.raw>{content.page.0.data.title}</f:format.raw></h1>
+                  <f:if condition="{content.data.header}">
+                    <h3><f:format.crop maxCharacters="{settings.header.crop}"><f:format.raw>{content.data.header}</f:format.raw></f:format.crop></h3>
+                  </f:if>
+                  <f:if condition="{content.data.bodytext}">
+                    <p><f:format.crop maxCharacters="{settings.bodytext.crop}"><f:format.raw>{content.data.bodytext}</f:format.raw></f:format.crop></p>
+                  </f:if>
+                </div>
+              </f:link.page>
+            </div> 
+       
+            <f:cycle values="{0: '', 1: 'xs', 2: 'sm'}" as="clearfix">
+              <f:if condition="{clearfix} == 'xs'"> 
+                <div class="clearfix visible-xs"></div>
+              </f:if>  
+              <f:if condition="{clearfix} == 'sm'"> 
+                <div class="clearfix visible-sm"></div>
+                <div class="clearfix visible-md"></div>
+                <div class="clearfix visible-lg"></div>
+              </f:if>      
+            </f:cycle>
+        
+        </f:if>  
+        
+        
+        <f:if condition="{content.files.0}">
+          <f:if condition="{content.files.0.type} == 2">
+            <div class="col-xs-6 col-sm-4">
+              <f:link.page pageUid="{content.data.pid}" section="{content.data.uid}" title="{content.data.header}" class="thumbnail" data="{equalheight:'item', toggle: 'tooltip'}">
+                <div class="thumbnail-image">
+                
+                <lef:imageSize xs="6" sm="4" border="5" ratio="0.5625">
+                    <f:render partial="Media/Gallery" arguments="{files: {0: content.files.0}, data: {image_rendering:50}, settings: settings, imagesize: imagesize}" />
+                 </lef:imageSize>
+                </div>  
+                <div class="thumbnail-caption">
+                   <h1><f:format.raw>{content.page.0.data.title}</f:format.raw></h1>
+                  <f:if condition="{content.data.header}">
+                    <h3><f:format.crop maxCharacters="{settings.header.crop}"><f:format.raw>{content.data.header}</f:format.raw></f:format.crop></h3>
+                  </f:if>
+                  <f:if condition="{content.data.bodytext}">
+                    <p><f:format.crop maxCharacters="{settings.bodytext.crop}"><f:format.raw>{content.data.bodytext}</f:format.raw></f:format.crop></p>
+                  </f:if>
+                </div>
+              </f:link.page>
+            </div>
+            <f:cycle values="{0: '', 1: 'xs', 2: 'sm'}" as="clearfix">
+              <f:if condition="{clearfix} == 'xs'"> 
+                <div class="clearfix visible-xs"></div>
+              </f:if>  
+              <f:if condition="{clearfix} == 'sm'"> 
+                <div class="clearfix visible-sm"></div>
+                <div class="clearfix visible-md"></div>
+                <div class="clearfix visible-lg"></div>
+              </f:if>      
+            </f:cycle>
+          </f:if>
+        </f:if>
+      </f:for>
+    </div>
+  </f:if>
+  
+</f:section>
+
+               

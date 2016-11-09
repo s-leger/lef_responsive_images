@@ -1,0 +1,15 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+<f:layout name="Default"/>
+<f:section name="Header"></f:section>
+<f:section name="Main">
+    <div class="textpic intext-right">
+        <div class="imagewrap">
+            <lef:imageSize sm="6" /> 
+            <f:render partial="Media/Gallery" arguments="{_all}" />
+        </div>
+        <div class="textpic-text">
+            <f:render partial="Header/All" arguments="{_all}" />
+            <f:format.html>{data.bodytext}</f:format.html>
+        </div>
+    </div>
+</f:section>

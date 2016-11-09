@@ -1,0 +1,82 @@
+#############################################################
+#### CTYPE: MENU OF SUBPAGES TO THESE PAGES AND SECTIONS ####
+#############################################################
+tt_content.menu.content_thumbs_random = FLUIDTEMPLATE
+tt_content.menu.content_thumbs_random {
+    ################
+    ### TEMPLATE ###
+    ################
+    templateName = MenuContentThumbsRandom
+    templateRootPaths {
+        0 = EXT:lef_responsive_images/Resources/Private/Templates/ContentElements/
+        10 = EXT:lef_responsive_images/Resources/Private/Templates/ContentElements/
+        20 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_contentelements.templateRootPaths}
+    }
+    partialRootPaths {
+        0 = EXT:lef_responsive_images/Resources/Private/Partials/ContentElements/
+        10 = EXT:lef_responsive_images/Resources/Private/Partials/ContentElements/
+        20 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_contentelements.partialRootPaths}
+    }
+    layoutRootPaths {
+        0 = EXT:lef_responsive_images/Resources/Private/Layouts/ContentElements/
+        10 = EXT:lef_responsive_images/Resources/Private/Layouts/ContentElements/
+        20 = {$plugin.tx_lefglobalsettings.fluidtemplate.responsive_images_contentelements.layoutRootPaths}
+    }
+    
+    ################
+    ### SETTINGS ###
+    ################
+    settings {
+        lightbox {
+            cssClass = {$plugin.bootstrap_package_contentelements.lightbox.cssClass}
+            prefix = {$plugin.bootstrap_package_contentelements.lightbox.prefix}
+        }
+        images < plugin.tx_lefglobalsettings.settings.images
+        moveCssToBody = {$plugin.tx_lefglobalsettings.settings.css.moveCssToBody}
+        header {
+            crop = {$plugin.tx_lefglobalsettings.menu.content_thumbs_random.header.crop}
+        }
+        bodytext {
+            crop = {$plugin.tx_lefglobalsettings.menu.content_thumbs_random.bodytext.crop}
+        }
+    }
+    ##########################
+    ### DATA PREPROCESSING ###
+    ##########################
+    dataProcessing {
+        10 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+        10 {
+            table = tt_content
+            max = {$plugin.tx_lefglobalsettings.menu.content_thumbs_random.maxitems}
+            pidInList = {$plugin.tx_lefglobalsettings.menu.content_thumbs_random.pidInList}
+            languageField = sys_language_uid 
+            orderBy = rand()  
+            #colPos=0 AND 
+            where = tt_content.pid<>###exclude### 
+            #AND CType='textpic'
+            #           andWhere = sectionIndex!=0 
+            markers {
+                exclude.data = page:uid
+            }
+            as = menu
+            dataProcessing {
+                10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+                10 {
+                    references.fieldName = image
+                }
+                20 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+                20{
+                    pidInList = root
+                    recursive= 5
+                    max = 1
+                    table = pages
+                    languageField = sys_language_uid 
+                    uidInList.field = pid
+                    as = page
+                }
+            }
+            
+        }
+        
+    }
+}

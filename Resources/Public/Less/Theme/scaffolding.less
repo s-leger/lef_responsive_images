@@ -1,0 +1,32 @@
+//
+// Body
+// --------------------------------------------------
+body {
+    position: relative;
+}
+.body-bg {
+    overflow: hidden;
+    zoom: 1;
+}
+
+
+//
+// Selection
+//
+::-moz-selection {
+    background-color: @brand-primary;
+    color: contrast(@brand-primary, black, white, 43%);
+}
+::selection {
+    background-color: @brand-primary;
+    color: contrast(@brand-primary, black, white, 43%);
+}
+
+
+//
+// HTMLAREA
+// --------------------------------------------------
+.htmlarea-content-body {
+    &:extend(body all);
+    padding: 20px;
+}

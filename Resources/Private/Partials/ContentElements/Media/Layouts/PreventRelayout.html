@@ -1,0 +1,64 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+
+<f:comment>
+on fluid layout,  the width of images depends on layout and is 100% of parent, so we only set padding.
+on fixed layouts, the width of images should explicitly be set.
+breakpoint 3 = xs
+breakpoint 2 = sm
+breakpoint 1 = md
+breakpoint 0 = lg
+</f:comment>
+
+<f:comment>Use css to prevent relayout</f:comment>
+
+<lef:css inline="{settings.moveCssToBody}">
+
+    <lef:mediaQuery min="lg">
+        <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+            #{file.data.selector}<f:format.raw>{</f:format.raw>padding-bottom:{file.srcset.lg.padding}<f:format.raw></f:format.raw>;
+            <f:if condition="{settings.images.breakpoint} > 0">
+                width:{file.srcset.lg.width}px;
+            </f:if>
+            <f:format.raw>}</f:format.raw>
+        </f:for>
+    </lef:mediaQuery>
+
+    <lef:mediaQuery min="md" max="lg">
+        <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+            #{file.data.selector}<f:format.raw>{</f:format.raw>padding-bottom:{file.srcset.md.padding}<f:format.raw></f:format.raw>;
+            <f:if condition="{settings.images.breakpoint} > 1">
+                width:{file.srcset.md.width}px;
+            </f:if>
+            <f:format.raw>}</f:format.raw>
+        </f:for>
+    </lef:mediaQuery>
+
+    <lef:mediaQuery min="sm" max="md">
+        <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+            #{file.data.selector}<f:format.raw>{</f:format.raw>padding-bottom:{file.srcset.sm.padding}<f:format.raw></f:format.raw>;
+            <f:if condition="{settings.images.breakpoint} > 2">
+                width:{file.srcset.sm.width}px;
+            </f:if>
+            <f:format.raw>}</f:format.raw>
+        </f:for>
+    </lef:mediaQuery>
+
+    <lef:mediaQuery min="xs" max="sm">
+        <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+            #{file.data.selector}<f:format.raw>{</f:format.raw>padding-bottom:{file.srcset.xs.padding}<f:format.raw></f:format.raw>;
+            <f:if condition="{settings.images.breakpoint} > 3">
+                width:{file.srcset.xs.width}px;
+            </f:if>
+            <f:format.raw>}</f:format.raw>
+        </f:for>
+    </lef:mediaQuery>
+    <lef:mediaQuery max="xs">
+        <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+            #{file.data.selector}<f:format.raw>{</f:format.raw>padding-bottom:{file.srcset.xxs.padding}<f:format.raw></f:format.raw>;
+            <f:if condition="{settings.images.breakpoint} > 4">
+                width:{file.srcset.xxs.width}px;
+            </f:if>
+            <f:format.raw>}</f:format.raw>
+        </f:for>
+    </lef:mediaQuery>
+</lef:css>

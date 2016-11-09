@@ -23,7 +23,7 @@ Bootstrap3 responsive images
 		en
 
 	:Description:
-		Extends the Bootstrap Package (bootstrap_package)
+		Extends the Bootstrap Package (lef_responsive_images)
 
 		- Auto generate images with the right size for every breakpoint / layout
 		- Support for retina

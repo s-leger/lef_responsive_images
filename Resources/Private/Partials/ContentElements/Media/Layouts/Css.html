@@ -1,0 +1,11 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+
+<f:comment>Css</f:comment>
+
+<lef:gallery files="{files}" data="{data}" settings="{settings}" imagesize="imagesize" as="gallery">
+    <lef:css inline="{settings.moveCssToBody}">
+        <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+            <f:render partial="Media/Types/Type" arguments="{file: file, data: data, settings: settings}" />
+        </f:for>
+    </lef:css>
+</lef:gallery>

@@ -1,0 +1,105 @@
+{namespace lef = LEF\LefResponsiveImages\ViewHelpers}
+{namespace bk2k = BK2K\BootstrapPackage\ViewHelpers}
+
+<f:comment>Regular grid layout with variable columns count</f:comment>
+
+<bk2k:var name="columns" value="{lef:simpleMath( operator:'min', a:'{data.imagecols}', b:'{files->f:count()}')}" />
+
+<f:switch expression="{columns}">
+    
+    <f:case value="0">
+        <lef:imageSize store="1" xs="12" />
+        <bk2k:var name="class" value="col-xs-12" />
+    </f:case>
+  
+    <f:case value="1">
+        <lef:imageSize store="1" xs="12" />
+        <bk2k:var name="class" value="col-xs-12" />
+    </f:case>
+  
+    <f:case value="2">
+        <lef:imageSize store="1" xs="12" sm="6"/>
+        <bk2k:var name="class" value="col-sm-6" />
+    </f:case>
+    
+    <f:case value="3">
+        <lef:imageSize store="1" xs="4"/>
+        <bk2k:var name="class" value="col-xs-4" />
+    </f:case>
+    
+    <f:case value="4">
+        <lef:imageSize store="1" xs="6" sm="3"/>
+        <bk2k:var name="class" value="col-xs-6 col-sm-3" />
+    </f:case>
+    
+    <f:case value="5">
+        <lef:imageSize store="1" xs="4" sm="2.4" />
+        <bk2k:var name="class" value="col-xs-4 col-sm-1-5" />
+    </f:case>
+    
+    <f:case value="6">
+        <lef:imageSize store="1" xs="4" md="2"/>
+        <bk2k:var name="class" value="col-xs-4 col-md-2" />
+    </f:case>
+    
+    <f:case value="7">
+        <lef:imageSize store="1" xs="4" sm="3" md="1.7142857142857142857142857142857" />
+        <bk2k:var name="class" value="col-xs-4 col-sm-3 col-md-1-7" />
+    </f:case>
+    
+    <f:case value="8">
+        <lef:imageSize store="1" xs="4" sm="3" md="1.5" />
+        <bk2k:var name="class" value="col-xs-4 col-sm-3 col-md-1-8" />
+    </f:case>
+    
+    <f:case value="9">
+        <lef:imageSize store="1" xs="4" sm="4" md="1.333333333333333333333333333333" />
+        <bk2k:var name="class" value="col-xs-4 col-sm-4 col-md-1-9" />
+    </f:case>
+    
+    <f:case value="10">
+        <lef:imageSize store="1" xs="4" sm="2.4" md="1.2" />
+        <bk2k:var name="class" value="col-xs-4 col-sm-1-5 col-md-1-10" />
+    </f:case>
+        
+</f:switch>
+
+<lef:gallery files="{files}" data="{data}" settings="{settings}" imagesize="imagesize" as="gallery">
+    
+    <f:if condition="{settings.images.preventrelayout}">
+        <f:render partial="Media/Layouts/PreventRelayout" arguments="{gallery: gallery, settings: settings}" />
+    </f:if>
+    
+    <div class="row gutter-flex">
+        
+        <f:for each="{gallery.files}" as="file" iteration="fileIteration">
+            
+            <div class="{class}">
+              <figure class="image">
+                <f:render partial="Media/Types/Type" arguments="{file: file, data: data, settings: settings}" />
+              </figure>
+            </div>
+            
+            <f:comment>Reset for columns / lines (replace equalheight.js by markup)</f:comment>
+            
+            <f:if condition="{fileIteration.cycle} < {fileIteration.total}">
+                <f:if condition="{lef:simpleMath(a:'{fileIteration.cycle}', b:'{gallery.cols.xs}', operator:'%')} < 0.1">
+                    <div class="clearfix visible-xs-block"></div>
+                </f:if>
+                <f:if condition="{lef:simpleMath(a:'{fileIteration.cycle}', b:'{gallery.cols.sm}', operator:'%')} < 0.1">
+                    <div class="clearfix visible-sm-block"></div>
+                </f:if>
+                <f:if condition="{lef:simpleMath(a:'{fileIteration.cycle}', b:'{gallery.cols.md}', operator:'%')} < 0.1">
+                    <div class="clearfix visible-md-block"></div>
+                </f:if>
+                <f:if condition="{lef:simpleMath(a:'{fileIteration.cycle}', b:'{gallery.cols.lg}', operator:'%')} < 0.1">
+                    <div class="clearfix visible-lg-block"></div>
+                </f:if>
+            </f:if>
+            
+        </f:for>
+        
+    </div>
+    
+</lef:gallery>
+
