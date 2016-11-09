@@ -8,11 +8,13 @@ This ends up into providing images far larger than client would have needed (thi
 
 Providing some care, it's possible to pre-compute real image size in nearly every layout for every breakpoint. Adding full support for correct img srcset and picture tag, and data-attributes lazyload solution, and css background.
 
+
 **The cons :**
 
 - Precomputing 5 to 10 images (breakpoints +1) can be time consuming on first load of the page.
 - Configuration to take account of grid system, breakpoints, and content frames.
 - Adapting templates to make system aware of layout.
+
 
 **The pros :**
 
@@ -21,20 +23,23 @@ Providing some care, it's possible to pre-compute real image size in nearly ever
 - Less time to load
 - Automagic once configuration done, but with standards grids setups it should be ok right out of the box.
 
+
 **Features :**
 
-- Art direction
+- Precompute real size and generate images according to the space available on any layout.
+- Art direction images and css including carousel one
+- Responsive Css backgrounds
 - Allow from 1 up to 10 images per row
-- User defined image size
-- Css background
-- Extended carousel
-- Image quality
-- Generate image with right size for each breakpoint
-- Multiple images layouts (regular grid, rows - left right justify - , columns - top justify -)
-- Support Picture, Img srcset and Img with data attribute
-- Images placeholder
-- Prevent relayout of page when image load via css
-
+- Responsive carousel css bg and improved height setup (either via ratio or fixed per breakpoints)
+- Support for pdf in frontend
+- Html content allow to write inline css in header and js for footer (via layouts)
+- Layout for multiple images regular, in row, in columns (including art direction)
+- Textpic image in text left and right
+- Support for user defined image width / height
+- Allow to set image quality
+- Image placeholder
+- Support img with data-attributes, picture and img with srcset
+- Prevent page relayout on image load via css
 
 Why not ?
 Who wants it ?
