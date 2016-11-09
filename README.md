@@ -1,4 +1,4 @@
-lef_responsive_images typoscript only plugin 
+lef_responsive_images
 
 A typo3 bootstrap_package extension to allow real image width generation for any breakpoint in fluid design
 
@@ -10,10 +10,9 @@ Providing some care, it's possible to pre-compute real image size in nearly ever
 
 **The cons :**
 
-- Precomputing 5 to 10 images (breakpoints +1) * 2 if retina can be time consuming on first load of the page.
+- Precomputing 5 to 10 images (breakpoints +1) can be time consuming on first load of the page.
 - Configuration to take account of grid system, breakpoints, and content frames.
 - Adapting templates to make system aware of layout.
-- ~~Not artistic direction friendly (but there is currently no one in typo3)~~
 
 **The pros :**
 
@@ -21,6 +20,20 @@ Providing some care, it's possible to pre-compute real image size in nearly ever
 - Less energy
 - Less time to load
 - Automagic once configuration done, but with standards grids setups it should be ok right out of the box.
+
+**Features :**
+
+- Art direction
+- Allow from 1 up to 10 images per row
+- User defined image size
+- Css background
+- Extended carousel
+- Image quality
+- Generate image with right size for each breakpoint
+- Multiple images layouts (regular grid, rows - left right justify - , columns - top justify -)
+- Support Picture, Img srcset and Img with data attribute
+- Images placeholder
+- Prevent relayout of page when image load via css
 
 
 Why not ?
