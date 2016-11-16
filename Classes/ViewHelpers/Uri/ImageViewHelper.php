@@ -84,7 +84,7 @@ class ImageViewHelper extends AbstractViewHelper implements CompilableInterface
         $this->registerArgument('treatIdAsReference', 'bool', 'given src argument is a sys_file_reference record', false, false);
         $this->registerArgument('crop', 'string|bool', 'overrule cropping of image (setting to FALSE disables the cropping set in FileReference)');
         $this->registerArgument('absolute', 'bool', 'Force absolute URL', false, false);
-         $this->registerArgument('format', 'string', 'file format', false, null);
+        $this->registerArgument('format', 'string', 'file format', false, null);
         $this->registerArgument('quality', 'int', 'image quality', false, null);
    }
     /**
